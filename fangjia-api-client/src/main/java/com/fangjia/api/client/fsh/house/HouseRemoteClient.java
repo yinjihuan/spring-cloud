@@ -17,9 +17,20 @@ import com.fangjia.api.client.fsh.house.dto.HouseListDto;
 @FeignClient(value = "fangjia-fsh-house-service", path = "/house", configuration = FeignConfiguration.class)
 public interface HouseRemoteClient {
 	
+	/**
+	 * 获取企业下某用户的有效房产信息
+	 * @param eid	企业编号
+	 * @param uid	用户编号
+	 * @return
+	 */
 	@GetMapping("/list/{eid}/{uid}")
 	public HouseListDto hosueList(@PathVariable("eid")Long eid, @PathVariable("uid")String uid);	
 	
+	/**
+	 * 获取房产详细信息
+	 * @param houseId 房产编号
+	 * @return
+	 */
 	@GetMapping("/{houseId}")
 	public HouseInfoDto hosueInfo(@PathVariable("houseId")Long houseId);
 	
