@@ -15,7 +15,9 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 public class FshHouseServiceApplication {
+	
     public static void main(String[] args) {
         SpringApplication.run(FshHouseServiceApplication.class, args);
     }
+    
 }

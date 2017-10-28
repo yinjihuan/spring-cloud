@@ -34,6 +34,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <dependency>
+        	<groupId>com.fangjia</groupId>
+        	<artifactId>fangjia-common</artifactId>
+        	<version>1.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -47,4 +52,17 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
+    <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
