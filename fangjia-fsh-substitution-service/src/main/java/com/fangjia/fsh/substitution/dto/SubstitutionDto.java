@@ -1,4 +1,4 @@
-package com.fangjia.fsh.substitution.controller.dto;
+package com.fangjia.fsh.substitution.dto;
 
 import com.fangjia.fsh.substitution.po.Substitution;
 

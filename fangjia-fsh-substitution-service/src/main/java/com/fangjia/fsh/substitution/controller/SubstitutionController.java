@@ -1,11 +1,13 @@
 package com.fangjia.fsh.substitution.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.fangjia.common.base.ResponseData;
-import com.fangjia.fsh.substitution.controller.dto.SubstitutionDto;
+import com.fangjia.fsh.substitution.service.SubstitutionService;
 
 /**
  * 房产置换API
@@ -16,13 +18,13 @@ import com.fangjia.fsh.substitution.controller.dto.SubstitutionDto;
 @RestController
 @RequestMapping("/substitution")
 public class SubstitutionController {
+
+	@Autowired
+	private SubstitutionService substitutionService;
 	
 	@GetMapping("/{sid}")
 	public ResponseData substitutionInfo(@PathVariable("sid") Long sid) {
-		SubstitutionDto dto = new SubstitutionDto();
-		dto.setId(sid);
-		dto.setMoney(100.12);
-		return ResponseData.ok(dto);
+		return ResponseData.ok(substitutionService.getSubstitutionInfo(sid));
 	}
 	
 }

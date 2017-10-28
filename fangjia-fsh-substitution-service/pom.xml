@@ -35,8 +35,21 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-ribbon</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
         	<groupId>com.fangjia</groupId>
         	<artifactId>fangjia-common</artifactId>
+        	<version>1.0</version>
+        </dependency>
+        <dependency>
+        	<groupId>com.fangjia</groupId>
+        	<artifactId>fangjia-api-client</artifactId>
         	<version>1.0</version>
         </dependency>
     </dependencies>

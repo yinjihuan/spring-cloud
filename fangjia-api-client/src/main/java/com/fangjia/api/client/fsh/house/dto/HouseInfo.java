@@ -1,4 +1,4 @@
-package com.fangjia.fsh.substitution.controller.dto;
+package com.fangjia.api.client.fsh.house.dto;
 
 public class HouseInfo {
 	private Long id;
@@ -9,13 +9,16 @@ public class HouseInfo {
 	
 	private String name;
 
-	
 	public HouseInfo(Long id, String city, String region, String name) {
 		super();
 		this.id = id;
 		this.city = city;
 		this.region = region;
 		this.name = name;
+	}
+	
+	public HouseInfo() {
+		super();
 	}
 
 	public Long getId() {
