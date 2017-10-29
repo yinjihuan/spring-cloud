@@ -1,6 +1,6 @@
-package com.fangjia.fsh.substitution.service;
+package com.fangjia.dashboard.service;
 
-import com.fangjia.fsh.substitution.dto.SubstitutionDto;
+import com.fangjia.dashboard.dto.SubstitutionDto;
 
 /**
  * 房产置换业务

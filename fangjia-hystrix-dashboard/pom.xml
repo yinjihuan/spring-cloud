@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fangjia</groupId>
-    <artifactId>fangjia-fsh-substitution-service</artifactId>
+    <artifactId>fangjia-hystrix-dashboard</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>fangjia-fsh-substitution-service</name>
+    <name>fangjia-hystrix-dashboard</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -25,11 +25,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <artifactId>spring-cloud-starter-turbine</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-turbine</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -37,25 +37,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-ribbon</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
         <dependency>
-        	<groupId>com.fangjia</groupId>
-        	<artifactId>fangjia-common</artifactId>
-        	<version>1.0</version>
-        </dependency>
-        <dependency>
-        	<groupId>com.fangjia</groupId>
-        	<artifactId>fangjia-api-client</artifactId>
-        	<version>1.0</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
         </dependency>
     </dependencies>
 

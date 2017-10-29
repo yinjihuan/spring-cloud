@@ -1,4 +1,4 @@
-package com.fangjia.fsh.substitution.config;
+package com.fangjia.dashboard.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
