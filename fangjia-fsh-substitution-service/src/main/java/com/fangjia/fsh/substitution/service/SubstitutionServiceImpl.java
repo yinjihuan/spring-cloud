@@ -1,13 +1,13 @@
-package com.fangjia.dashboard.service;
+package com.fangjia.fsh.substitution.service;
 
-import com.fangjia.dashboard.dto.HouseInfo;
-import com.fangjia.dashboard.dto.SubstitutionDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fangjia.api.client.fsh.house.HouseRemoteClient;
 import com.fangjia.api.client.fsh.house.dto.HouseInfoDto;
+import com.fangjia.fsh.substitution.dto.HouseInfo;
+import com.fangjia.fsh.substitution.dto.SubstitutionDto;
 
 @Service
 public class SubstitutionServiceImpl implements SubstitutionService {

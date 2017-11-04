@@ -1,4 +1,4 @@
-package com.fangjia.dashboard;
+package com.fangjia.fsh.substitution;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.fangjia.dashboard.dto;
+package com.fangjia.fsh.substitution.dto;
 
 public class HouseInfo {
 	private Long id;

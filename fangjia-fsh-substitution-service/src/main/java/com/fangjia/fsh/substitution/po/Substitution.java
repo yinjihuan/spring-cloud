@@ -1,4 +1,4 @@
-package com.fangjia.dashboard.po;
+package com.fangjia.fsh.substitution.po;
 
 public class Substitution {
 	private Long id;

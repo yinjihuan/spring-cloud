@@ -1,6 +1,6 @@
-package com.fangjia.dashboard.dto;
+package com.fangjia.fsh.substitution.dto;
 
-import com.fangjia.dashboard.po.Substitution;
+import com.fangjia.fsh.substitution.po.Substitution;
 
 public class SubstitutionDto extends Substitution {
 	
