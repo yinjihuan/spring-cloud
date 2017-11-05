@@ -4,3 +4,7 @@
 - Spring Cloud Eureka 增加权限认证：http://cxytiandi.com/blog/detail/12171
 - Spring Cloud Eureka 集群高可用：http://cxytiandi.com/blog/detail/12188
 - Spring Cloud中如何优雅的使用Feign调用接口：http://cxytiandi.com/blog/detail/12189
+
+# 作者
+- 尹吉欢 1304489315@qq.com
+- 博客 http://cxytiandi.com/blogs/yinjihuan
