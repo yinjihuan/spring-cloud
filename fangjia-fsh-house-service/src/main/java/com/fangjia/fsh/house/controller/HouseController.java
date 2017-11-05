@@ -26,6 +26,11 @@ public class HouseController {
 		return ResponseData.ok(houseService.queryAll(eid, uid));
 	}
 	
+	/**
+	 * 获取房产信息
+	 * @param houseId 房产编号
+	 * @return 
+	 */
 	@GetMapping("/{houseId}")
 	public ResponseData hosueInfo(@PathVariable("houseId")Long houseId) {
 		return ResponseData.ok(houseService.getHouseInfo(houseId));

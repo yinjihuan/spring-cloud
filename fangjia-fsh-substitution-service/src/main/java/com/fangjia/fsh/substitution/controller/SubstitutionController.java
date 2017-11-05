@@ -22,6 +22,11 @@ public class SubstitutionController {
 	@Autowired
 	private SubstitutionService substitutionService;
 	
+	/**
+	 * 获取置换信息
+	 * @param sid
+	 * @return
+	 */
 	@GetMapping("/{sid}")
 	public ResponseData substitutionInfo(@PathVariable("sid") Long sid) {
 		return ResponseData.ok(substitutionService.getSubstitutionInfo(sid));
