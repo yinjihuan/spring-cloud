@@ -2,7 +2,7 @@ package com.fangjia.common.base;
 
 public class ResponseData {
 	private int code = 200;
-	private String message;
+	private String message = "";
 	private Object data;
 	
 	public static ResponseData ok(Object data) {

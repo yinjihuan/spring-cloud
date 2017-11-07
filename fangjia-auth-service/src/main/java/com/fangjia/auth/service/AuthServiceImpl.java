@@ -9,7 +9,7 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public User auth(AuthQuery query) {
-		return new User();
+		return new User(1L);
 	}
 
 }
