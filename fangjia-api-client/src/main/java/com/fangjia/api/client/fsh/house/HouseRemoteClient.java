@@ -24,7 +24,7 @@ public interface HouseRemoteClient {
 	 * @return
 	 */
 	@GetMapping("/list/{eid}/{uid}")
-	public HouseListDto hosueList(@PathVariable("eid")Long eid, @PathVariable("uid")String uid);	
+	HouseListDto hosueList(@PathVariable("eid")Long eid, @PathVariable("uid")String uid);
 	
 	/**
 	 * 获取房产详细信息
@@ -32,6 +32,6 @@ public interface HouseRemoteClient {
 	 * @return
 	 */
 	@GetMapping("/{houseId}")
-	public HouseInfoDto hosueInfo(@PathVariable("houseId")Long houseId);
+	HouseInfoDto hosueInfo(@PathVariable("houseId")Long houseId);
 	
 }
