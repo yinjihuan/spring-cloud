@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author yinjihuan
  * @create 2017-11-07 13:55
  **/
-@FeignClient(value = "fangjia-auth-service", path = "/oauth", configuration = FeignConfiguration.class, fallback = HouseRemoteClientHystrix.class)
+@FeignClient(value = "fangjia-auth-service", path = "/oauth", configuration = FeignConfiguration.class, fallback = AuthRemoteClient.class)
 public interface AuthRemoteClient {
 
     /**

@@ -14,7 +14,7 @@ public class SubstitutionServiceImpl implements SubstitutionService {
 
 	@Autowired
 	private HouseRemoteClient houseRemoteClient;
-	
+
 	@Override
 	public SubstitutionDto getSubstitutionInfo(Long sid) {
 		SubstitutionDto dto = new SubstitutionDto();

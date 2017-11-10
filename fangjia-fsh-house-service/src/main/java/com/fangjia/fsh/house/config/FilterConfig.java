@@ -16,7 +16,7 @@ import java.util.List;
  **/
 @Configuration
 public class FilterConfig {
-   // @Bean
+    @Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         HttpBasicAuthorizeFilter httpBasicFilter = new HttpBasicAuthorizeFilter();
