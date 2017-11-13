@@ -1,4 +1,4 @@
-package com.fangjia.api.client.fsh.config;
+package com.fangjia.api.client.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
@@ -9,13 +9,13 @@ import feign.RequestTemplate;
  * @create 2017-11-10 17:25
  **/
 public class FeignBasicAuthRequestInterceptor  implements RequestInterceptor {
-    private final String headerValue;
 
-    public FeignBasicAuthRequestInterceptor(String headerValue) {
-        this.headerValue = headerValue;
+    public FeignBasicAuthRequestInterceptor() {
+
     }
+
     @Override
     public void apply(RequestTemplate template) {
-        template.header("Authorization", headerValue);
+        template.header("Authorization", System.getProperty("fangjia.auth.token"));
     }
 }

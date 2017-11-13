@@ -1,8 +1,7 @@
 package com.fangjia.api.client.auth;
 
 import com.fangjia.api.client.auth.query.AuthQuery;
-import com.fangjia.api.client.fsh.config.FeignConfiguration;
-import com.fangjia.api.client.fsh.house.HouseRemoteClientHystrix;
+import com.fangjia.api.client.config.FeignConfiguration;
 import com.fangjia.common.base.ResponseData;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author yinjihuan
  * @create 2017-11-07 13:55
  **/
-@FeignClient(value = "fangjia-auth-service", path = "/oauth", configuration = FeignConfiguration.class, fallback = AuthRemoteClient.class)
+@FeignClient(value = "fangjia-auth-service", path = "/oauth", configuration = FeignConfiguration.class, fallback = AuthRemoteClientHystrix.class)
 public interface AuthRemoteClient {
 
     /**

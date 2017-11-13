@@ -42,7 +42,7 @@ public class TokenScheduledTask {
         System.setProperty("fangjia.auth.token", token);
     }
 
-    private String getToken() {
+    public String getToken() {
         AuthQuery query = new AuthQuery();
         query.setAccessKey("1");
         query.setSecretKey("1");

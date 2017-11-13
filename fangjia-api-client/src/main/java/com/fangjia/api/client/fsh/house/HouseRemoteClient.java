@@ -4,7 +4,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.fangjia.api.client.fsh.config.FeignConfiguration;
+import com.fangjia.api.client.config.FeignConfiguration;
 import com.fangjia.api.client.fsh.house.dto.HouseInfoDto;
 import com.fangjia.api.client.fsh.house.dto.HouseListDto;
 

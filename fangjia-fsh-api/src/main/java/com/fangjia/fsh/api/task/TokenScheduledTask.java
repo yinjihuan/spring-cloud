@@ -1,6 +1,8 @@
 package com.fangjia.fsh.api.task;
 
-import com.fangjia.fsh.api.service.AuthService;
+import com.fangjia.api.client.auth.AuthRemoteClient;
+import com.fangjia.api.client.auth.query.AuthQuery;
+import com.fangjia.common.base.ResponseData;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,25 +22,31 @@ public class TokenScheduledTask {
 
     public final static long ONE_Minute = 60 * 1000 * 60 * 20;
 
-    public static String token = "";
-
     @Autowired
-    private AuthService authService;
+    private AuthRemoteClient authRemoteClient;
 
     /**
      * 刷新Token
      */
     @Scheduled(fixedDelay = ONE_Minute)
     public void reloadApiToken() {
-        token = authService.getToken();
+        String token = this.getToken();
         while (StringUtils.isBlank(token)) {
             try {
                 Thread.sleep(1000);
-                token = authService.getToken();
+                token = this.getToken();
             } catch (InterruptedException e) {
                 logger.error("", e);
             }
         }
+        System.setProperty("fangjia.auth.token", token);
     }
 
+    public String getToken() {
+        AuthQuery query = new AuthQuery();
+        query.setAccessKey("1");
+        query.setSecretKey("1");
+        ResponseData response = authRemoteClient.auth(query);
+        return response.getData() == null ? "" : response.getData().toString();
+    }
 }

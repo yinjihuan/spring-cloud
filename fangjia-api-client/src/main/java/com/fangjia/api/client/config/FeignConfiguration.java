@@ -1,5 +1,6 @@
-package com.fangjia.api.client.fsh.config;
+package com.fangjia.api.client.config;
 
+import com.fangjia.api.client.config.FeignBasicAuthRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import feign.Logger;
@@ -17,7 +18,7 @@ public class FeignConfiguration {
      */
     @Bean
     public FeignBasicAuthRequestInterceptor basicAuthRequestInterceptor() {
-        return new FeignBasicAuthRequestInterceptor(System.getProperty("fangjia.auth.token"));
+        return new FeignBasicAuthRequestInterceptor();
     }
 
 }
