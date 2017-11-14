@@ -1,6 +1,7 @@
 package com.fangjia.fsh.api.config;
 
 import com.fangjia.fsh.api.filter.AuthHeaderFilter;
+import com.fangjia.fsh.api.filter.LimitFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,5 +16,10 @@ public class FilterConfig {
     @Bean
     public AuthHeaderFilter preRequestLogFilter() {
         return new AuthHeaderFilter();
+    }
+
+    @Bean
+    public LimitFilter limitFilter() {
+        return new LimitFilter();
     }
 }
