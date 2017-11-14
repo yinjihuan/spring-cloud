@@ -14,7 +14,7 @@ import com.fangjia.api.client.fsh.house.dto.HouseListDto;
  * @author yinjihuan
  * @create 2017-10-27 13:55
  **/
-@FeignClient(value = "fangjia-fsh-house-service", path = "/house", configuration = FeignConfiguration.class, fallback = HouseRemoteClientHystrix.class)
+@FeignClient(value = "fsh-house", path = "/house", configuration = FeignConfiguration.class, fallback = HouseRemoteClientHystrix.class)
 public interface HouseRemoteClient {
 	
 	/**

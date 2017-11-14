@@ -3,6 +3,7 @@ package com.fangjia.fsh.api.filter;
 import com.google.common.util.concurrent.RateLimiter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * 总体限流过滤器
@@ -34,6 +35,9 @@ public class LimitFilter extends ZuulFilter {
 
     @Override
     public Object run() {
+        RequestContext ctx = RequestContext.getCurrentContext();
+        String uri = ctx.getRequest().getRequestURI();
+        System.err.println(uri);
         //总体限流
         rateLimiter.acquire();
         return null;

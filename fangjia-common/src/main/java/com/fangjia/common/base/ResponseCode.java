@@ -1,7 +1,7 @@
 package com.fangjia.common.base;
 
 public enum ResponseCode {
-	/** 参数错误 **/
+	/** 正确 **/
 	SUCCESS_CODE(200),
 	/** 参数错误 **/
 	PARAM_ERROR_CODE(400),
@@ -14,8 +14,9 @@ public enum ResponseCode {
 	/** 资源没找到 **/
 	NOT_FOUND(404),
 	/** 服务器错误 **/
-	SERVER_ERROR_CODE(500);
-	
+	SERVER_ERROR_CODE(500),
+	/** 服务降级中 **/
+	DOWNGRADE(406);
 	private int code;
 	public void setCode(int code) {
 		this.code = code;
