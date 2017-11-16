@@ -1,5 +1,6 @@
 package com.fangjia.fsh.api;
 
+import org.cxytiandi.conf.client.init.SmconfInit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;

@@ -21,7 +21,9 @@ public class DowngradeFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+        RequestContext ctx = RequestContext.getCurrentContext();
+        Object success = ctx.get("isSuccess");
+        return success == null ? true : Boolean.parseBoolean(success.toString());
     }
 
     @Override
@@ -31,7 +33,7 @@ public class DowngradeFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 0;
+        return 4;
     }
 
     @Override
