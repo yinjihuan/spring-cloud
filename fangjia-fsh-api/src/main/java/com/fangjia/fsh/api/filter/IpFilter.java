@@ -28,7 +28,9 @@ public class IpFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+        RequestContext ctx = RequestContext.getCurrentContext();
+        Object success = ctx.get("isSuccess");
+        return success == null ? true : Boolean.parseBoolean(success.toString());
     }
 
     @Override
@@ -45,8 +47,6 @@ public class IpFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         String ip = IpUtils.getIpAddr(ctx.getRequest());
-        System.err.println(basicConf.getIpStr());
-        System.err.println(ConfApplication.getBean(BasicConf.class).getIpStr());
         // 在黑名单中禁用
         if (StringUtils.isNotBlank(ip) && basicConf != null && basicConf.getIpStr().contains(ip)) {
             ctx.set("isSuccess", false);

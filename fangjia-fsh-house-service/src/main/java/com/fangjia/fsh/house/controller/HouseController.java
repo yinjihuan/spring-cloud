@@ -33,6 +33,7 @@ public class HouseController {
 	 */
 	@GetMapping("/{houseId}")
 	public ResponseData hosueInfo(@PathVariable("houseId")Long houseId) {
+		System.err.println("===");
 		return ResponseData.ok(houseService.getHouseInfo(houseId));
 	}
 	

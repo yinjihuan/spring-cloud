@@ -35,9 +35,6 @@ public class LimitFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        String uri = ctx.getRequest().getRequestURI();
-        System.err.println(uri);
         //总体限流
         rateLimiter.acquire();
         return null;

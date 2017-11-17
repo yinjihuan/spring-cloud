@@ -3,9 +3,11 @@ package com.fangjia.fsh.api.filter;
 import com.fangjia.common.base.ResponseCode;
 import com.fangjia.common.base.ResponseData;
 import com.fangjia.common.util.JsonUtils;
+import com.fangjia.fsh.api.config.BasicConf;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 服务降级过滤器
@@ -13,9 +15,12 @@ import org.apache.commons.lang.StringUtils;
  * @author yinjihuan
  * @create 2017-11-14 10:06
  **/
-public class DowngradeFilter extends ZuulFilter {
+public class DownGradeFilter extends ZuulFilter {
 
-    public DowngradeFilter() {
+    @Autowired
+    private BasicConf basicConf;
+
+    public DownGradeFilter() {
         super();
     }
 
@@ -28,7 +33,7 @@ public class DowngradeFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
-        return "pre";
+        return "route";
     }
 
     @Override
@@ -39,18 +44,15 @@ public class DowngradeFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
-        String uri = ctx.getRequest().getRequestURI();
-        if (StringUtils.isNotBlank(uri)) {
-            String[] uris = uri.split("/");
-            if (uris.length > 1) {
-                String serviceId = uris[1];
-                if ("fsh-house".equals(serviceId)) {
-                    ctx.setSendZuulResponse(false);
-                    ResponseData data = ResponseData.fail("服务降级中", ResponseCode.DOWNGRADE.getCode());
-                    ctx.setResponseBody(JsonUtils.toJson(data));
-                    ctx.getResponse().setContentType("application/json; charset=utf-8");
-                    return null;
-                }
+        Object serviceId = ctx.get("serviceId");
+        if (serviceId != null) {
+            if (basicConf != null && basicConf.getDownGradeServiceStr().contains(serviceId.toString())) {
+                ctx.setSendZuulResponse(false);
+                ctx.set("isSuccess", false);
+                ResponseData data = ResponseData.fail("服务降级中", ResponseCode.DOWNGRADE.getCode());
+                ctx.setResponseBody(JsonUtils.toJson(data));
+                ctx.getResponse().setContentType("application/json; charset=utf-8");
+                return null;
             }
         }
         return null;

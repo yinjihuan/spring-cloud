@@ -18,7 +18,9 @@ public class AuthHeaderFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+        RequestContext ctx = RequestContext.getCurrentContext();
+        Object success = ctx.get("isSuccess");
+        return success == null ? true : Boolean.parseBoolean(success.toString());
     }
 
     @Override

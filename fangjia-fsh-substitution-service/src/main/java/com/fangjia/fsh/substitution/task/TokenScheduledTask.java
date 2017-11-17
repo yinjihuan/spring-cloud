@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author yinjihuan
  * @create 2017-11-09 15:39
  **/
-@Component
+//@Component
 public class TokenScheduledTask {
     private static Logger logger = LoggerFactory.getLogger(TokenScheduledTask.class);
 
