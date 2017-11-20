@@ -41,21 +41,18 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>com.fangjia</groupId>
-        	<artifactId>fangjia-common</artifactId>
-        	<version>1.0</version>
         </dependency>
         <dependency>
         	<groupId>com.fangjia</groupId>
         	<artifactId>fangjia-api-client</artifactId>
         	<version>1.0</version>
+        </dependency>
+        <!-- Swagger -->
+        <dependency>
+            <groupId>com.cxytiandi</groupId>
+            <artifactId>spring-boot-starter-swagger</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 

@@ -48,11 +48,10 @@
 			<artifactId>cxytiandi-conf-client</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.retry/spring-retry -->
+		<!-- 重试机制 ，必须配，否则重试不生效 -->
 		<dependency>
 			<groupId>org.springframework.retry</groupId>
 			<artifactId>spring-retry</artifactId>
-			<version>1.2.1.RELEASE</version>
 		</dependency>
 
 	</dependencies>
