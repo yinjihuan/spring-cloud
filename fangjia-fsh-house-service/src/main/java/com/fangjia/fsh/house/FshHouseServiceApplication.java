@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -19,9 +20,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients
 @ComponentScan(basePackages={"com.fangjia"})
 public class FshHouseServiceApplication {
-	
+    public static ConfigurableApplicationContext context = null;
     public static void main(String[] args) {
-        SpringApplication.run(FshHouseServiceApplication.class, args);
+        System.setProperty("smconf.conf.package", "com.fangjia.fsh.house.config");
+        context = SpringApplication.run(FshHouseServiceApplication.class, args);
     }
     
 }
