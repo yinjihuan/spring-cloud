@@ -37,4 +37,9 @@ public class FilterConfig {
     public GrayPushFilter grayPushFilter() {
         return new GrayPushFilter();
     }
+
+    @Bean
+    public AuthFilter authFilter() {
+        return new AuthFilter();
+    }
 }
