@@ -11,6 +11,7 @@ import com.netflix.zuul.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.Cookie;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -92,7 +93,7 @@ public class AuthFilter extends ZuulFilter {
             ctx.getResponse().setContentType("application/json; charset=utf-8");
             return null;
         }
-
+        ctx.addZuulRequestHeader("uid", jwt.getUid());
         return null;
     }
 }

@@ -1,5 +1,8 @@
 package com.fangjia.fsh.api.fallback;
 
+import com.netflix.zuul.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +24,8 @@ import java.nio.charset.Charset;
  */
 @Component
 public class ServiceConsumerFallbackProvider implements ZuulFallbackProvider {
+
+	private Logger log = LoggerFactory.getLogger(ServiceConsumerFallbackProvider.class);
 
 	/**
 	 * 需要回退的服务名称，必须是Eureka中注册的，全部用*
@@ -55,6 +60,9 @@ public class ServiceConsumerFallbackProvider implements ZuulFallbackProvider {
 
 			@Override
 			public InputStream getBody() throws IOException {
+				RequestContext ctx = RequestContext.getCurrentContext();
+				Throwable throwable = ctx.getThrowable();
+				log.error("", throwable.getCause());
 				ResponseData data = ResponseData.fail("服务器内部错误", ResponseCode.SERVER_ERROR_CODE.getCode());
 				return new ByteArrayInputStream(JsonUtils.toJson(data).getBytes());
 			}

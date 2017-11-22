@@ -1,12 +1,11 @@
 package com.fangjia.fsh.house.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.fangjia.common.base.ResponseData;
 import com.fangjia.fsh.house.service.HouseService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 房产API
@@ -32,8 +31,9 @@ public class HouseController {
 	 * @return 
 	 */
 	@GetMapping("/{houseId}")
-	public ResponseData hosueInfo(@PathVariable("houseId")Long houseId) {
-		System.err.println("===");
+	public ResponseData hosueInfo(@PathVariable("houseId")Long houseId, HttpServletRequest request) {
+		String uid = request.getHeader("uid");
+		System.err.println("==="+uid);
 		return ResponseData.ok(houseService.getHouseInfo(houseId));
 	}
 	
