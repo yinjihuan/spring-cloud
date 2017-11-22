@@ -24,6 +24,17 @@ public class BasicConf {
     @ConfField("灰度发布的用户ID信息，多个用逗号分隔")
     private String grayPushUsers = "default";
 
+    @ConfField("API接口白名单，多个用逗号分隔")
+    private String apiWhiteStr = "default";
+
+    public String getApiWhiteStr() {
+        return apiWhiteStr;
+    }
+
+    public void setApiWhiteStr(String apiWhiteStr) {
+        this.apiWhiteStr = apiWhiteStr;
+    }
+
     public String getGrayPushServers() {
         return grayPushServers;
     }
