@@ -54,6 +54,12 @@
             <artifactId>spring-boot-starter-swagger</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <!-- Smconf -->
+        <dependency>
+            <groupId>com.cxytiandi</groupId>
+            <artifactId>cxytiandi-conf-client</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
