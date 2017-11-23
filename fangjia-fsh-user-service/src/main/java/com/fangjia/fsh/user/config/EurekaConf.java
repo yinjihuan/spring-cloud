@@ -4,7 +4,7 @@ import org.cxytiandi.conf.client.annotation.ConfField;
 import org.cxytiandi.conf.client.annotation.CxytianDiConf;
 
 /**
- * Eureka配置信息
+ * Eureka配置信息 (多个系统共用)
  *
  * @author yinjihuan
  * @create 2017-11-21 15:22

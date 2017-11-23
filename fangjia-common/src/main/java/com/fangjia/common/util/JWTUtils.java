@@ -19,26 +19,30 @@ import io.jsonwebtoken.SignatureException;
 public class JWTUtils {
 	private static RSAPrivateKey priKey;
 	private static RSAPublicKey pubKey;
-	/*static {
-		if (StringUtils.hasText(System.getProperty("rsa.modulus")) && StringUtils.hasText(System.getProperty("rsa.privateExponent"))
-				&& StringUtils.hasText(System.getProperty("rsa.publicExponent"))) {
-			priKey = RSAUtils.getPrivateKey(System.getProperty("rsa.modulus"), System.getProperty("rsa.privateExponent"));
-			pubKey = RSAUtils.getPublicKey(System.getProperty("rsa.modulus"), System.getProperty("rsa.publicExponent"));
-		} else {
-			throw new RuntimeException("请配置RSA的公钥私钥信息");
-		}
-	}*/
-	
+
+	private static class SingletonHolder {
+		private static final JWTUtils INSTANCE = new JWTUtils();
+	}
+
 	public synchronized static JWTUtils getInstance(String modulus, String privateExponent, String publicExponent) {
+		if (priKey == null && pubKey == null) {
+			priKey = RSAUtils.getPrivateKey(modulus, privateExponent);
+			pubKey = RSAUtils.getPublicKey(modulus, publicExponent);
+		}
+		return SingletonHolder.INSTANCE;
+	}
+
+	public synchronized static void reload(String modulus, String privateExponent, String publicExponent) {
 		priKey = RSAUtils.getPrivateKey(modulus, privateExponent);
 		pubKey = RSAUtils.getPublicKey(modulus, publicExponent);
-		return new JWTUtils();
 	}
 	
 	public synchronized static JWTUtils getInstance() {
-		priKey = RSAUtils.getPrivateKey(RSAUtils.modulus, RSAUtils.private_exponent);
-		pubKey = RSAUtils.getPublicKey(RSAUtils.modulus, RSAUtils.public_exponent);
-		return new JWTUtils();
+		if (priKey == null && pubKey == null) {
+			priKey = RSAUtils.getPrivateKey(RSAUtils.modulus, RSAUtils.private_exponent);
+			pubKey = RSAUtils.getPublicKey(RSAUtils.modulus, RSAUtils.public_exponent);
+		}
+		return SingletonHolder.INSTANCE;
 	}
 	
 	/**

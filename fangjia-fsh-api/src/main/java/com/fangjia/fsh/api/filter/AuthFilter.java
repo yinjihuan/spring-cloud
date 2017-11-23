@@ -30,6 +30,7 @@ public class AuthFilter extends ZuulFilter {
 
     public AuthFilter() {
         super();
+
     }
 
     @Override
@@ -51,7 +52,7 @@ public class AuthFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         String token = ctx.getRequest().getHeader("Authorization");
-
+        JWTUtils jwtUtils = JWTUtils.getInstance(System.getProperty("rsa.modulus"), System.getProperty("rsa.privateExponent"), System.getProperty("rsa.publicExponent"));
         String apis = basicConf.getApiWhiteStr();
         //白名单，放过
         List<String> whileApis = Arrays.asList(apis.split(","));
@@ -84,7 +85,7 @@ public class AuthFilter extends ZuulFilter {
             return null;
         }
 
-        JWTUtils.JWTResult jwt = JWTUtils.getInstance().checkToken(token);
+        JWTUtils.JWTResult jwt = jwtUtils.checkToken(token);
         if (!jwt.isStatus()) {
             ctx.setSendZuulResponse(false);
             ctx.set("isSuccess", false);
