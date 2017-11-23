@@ -10,8 +10,8 @@
 - Spring Cloud Feign 启动UnsatisfiedDependencyException：http://cxytiandi.com/blog/detail/12549
 - Spring Cloud中如何保证各个微服务之间调用的安全性： http://cxytiandi.com/blog/detail/12267
 - Spring Cloud中如何保证各个微服务之间调用的安全性(下篇)：http://cxytiandi.com/blog/detail/12300
-- spring Cloud统一异常处理：http://cxytiandi.com/blog/detail/3106
 - Spring Cloud中Feign如何统一设置验证token：http://cxytiandi.com/blog/detail/12369
+- spring Cloud统一异常处理：http://cxytiandi.com/blog/detail/3106
 - Spring Cloud 如何选择分布式配置中心：http://cxytiandi.com/blog/detail/12466
 - Spring Cloud Ribbon 重试机制：http://cxytiandi.com/blog/detail/12507
 - Spring Cloud Zuul结合Smconf配置中心动态进行IP黑名单限制：http://cxytiandi.com/blog/detail/12508
