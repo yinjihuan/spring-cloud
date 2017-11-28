@@ -5,7 +5,7 @@
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
 
     <!-- Example for logging into the build folder of your project -->
-    <property name="LOG_FILE" value="logs\\${springAppName}.log"/>​
+    <property name="LOG_FILE" value="${LOG_FILE}"/>​
 
     <!-- You can override this to have a custom pattern -->
     <property name="CONSOLE_LOG_PATTERN"
@@ -27,7 +27,7 @@
     <appender name="flatfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder>
