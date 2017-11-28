@@ -15,7 +15,7 @@
 - Spring Cloud 如何选择分布式配置中心：http://cxytiandi.com/blog/detail/12466
 - Spring Cloud Ribbon 重试机制：http://cxytiandi.com/blog/detail/12507
 - Spring Cloud Zuul结合Smconf配置中心动态进行IP黑名单限制：http://cxytiandi.com/blog/detail/12508
-- Spring cloud Zuul Filter 使用小经验：http://cxytiandi.com/blog/detail/12632
+- Spring Cloud Zuul Filter 使用小经验：http://cxytiandi.com/blog/detail/12632
 
 # 作者
 - 尹吉欢 1304489315@qq.com
