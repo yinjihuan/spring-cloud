@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.fangjia</groupId>
-	<artifactId>fangjia-eureka</artifactId>
+	<artifactId>fangjia-zipkin</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>fangjia-eureka</name>
+	<name>fangjia-zipkin</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -25,13 +25,13 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-server</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-autoconfigure-ui</artifactId>
 		</dependency>
 
 	</dependencies>
