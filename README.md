@@ -17,6 +17,7 @@
 - Spring Cloud Zuul结合Smconf配置中心动态进行IP黑名单限制：http://cxytiandi.com/blog/detail/12508
 - Spring Cloud Zuul Filter 使用小经验：http://cxytiandi.com/blog/detail/12632
 - Spring Cloud Sleuth 链路追踪：http://cxytiandi.com/blog/detail/12804
+- Spring Cloud Sleuth Zipkin 展示追踪数据：http://cxytiandi.com/blog/detail/12828
 
 # 作者
 - 尹吉欢 1304489315@qq.com
