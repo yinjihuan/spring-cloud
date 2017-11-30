@@ -2,6 +2,8 @@ package com.fangjia.fsh.substitution.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 
 import com.fangjia.api.client.fsh.house.HouseRemoteClient;

@@ -2,7 +2,6 @@ package com.fangjia.fsh.house.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.cxytiandi.jdbc.EntityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
