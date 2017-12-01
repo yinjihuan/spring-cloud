@@ -1,6 +1,5 @@
 package com.fangjia.fsh.user.conf;
 
-import com.fangjia.fsh.house.FshHouseServiceApplication;
 import com.fangjia.fsh.user.FshUserServiceApplication;
 import org.cxytiandi.conf.client.annotation.ConfField;
 import org.cxytiandi.conf.client.annotation.CxytianDiConf;
