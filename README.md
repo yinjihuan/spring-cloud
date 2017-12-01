@@ -18,6 +18,8 @@
 - Spring Cloud Zuul Filter 使用小经验：http://cxytiandi.com/blog/detail/12632
 - Spring Cloud Sleuth 链路追踪：http://cxytiandi.com/blog/detail/12804
 - Spring Cloud Sleuth Zipkin 展示追踪数据：http://cxytiandi.com/blog/detail/12828
+- Spring Cloud Sleuth Zipkin 升级使用：http://cxytiandi.com/blog/detail/12855
+- Spring Boot Admin管理监控数据：http://cxytiandi.com/blog/detail/12880
 
 # 作者
 - 尹吉欢 1304489315@qq.com
