@@ -36,7 +36,7 @@
         </encoder>
     </appender>
     ​
-    <!-- Appender to log to file in a JSON format -->
+    <!-- Appender to log to file in a JSON format
     <appender name="logstash" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}.json</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -66,12 +66,12 @@
                 </pattern>
             </providers>
         </encoder>
-    </appender>
+    </appender>-->
     ​
     <root level="INFO">
         <appender-ref ref="console"/>
-        <!-- uncomment this to have also JSON logs -->
-        <appender-ref ref="logstash"/>
+        <!-- uncomment this to have also JSON logs
+        <appender-ref ref="logstash"/> -->
         <appender-ref ref="flatfile"/>
     </root>
 </configuration>
