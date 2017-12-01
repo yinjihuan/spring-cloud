@@ -4,14 +4,12 @@ import com.fangjia.common.base.ResponseCode;
 import com.fangjia.common.base.ResponseData;
 import com.fangjia.common.util.JWTUtils;
 import com.fangjia.common.util.JsonUtils;
-import com.fangjia.fsh.api.config.BasicConf;
-import com.google.common.util.concurrent.RateLimiter;
+import com.fangjia.fsh.api.conf.BasicConf;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.http.Cookie;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;

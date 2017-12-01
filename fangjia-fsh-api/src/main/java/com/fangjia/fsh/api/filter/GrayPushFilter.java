@@ -1,6 +1,6 @@
 package com.fangjia.fsh.api.filter;
 
-import com.fangjia.fsh.api.config.BasicConf;
+import com.fangjia.fsh.api.conf.BasicConf;
 import com.fangjia.fsh.api.support.RibbonFilterContextHolder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

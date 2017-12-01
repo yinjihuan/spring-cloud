@@ -1,4 +1,4 @@
-package com.fangjia.fsh.user.config;
+package com.fangjia.fsh.user.conf;
 
 import com.fangjia.fsh.house.FshHouseServiceApplication;
 import com.fangjia.fsh.user.FshUserServiceApplication;

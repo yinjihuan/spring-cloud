@@ -1,4 +1,4 @@
-package com.fangjia.fsh.api.config;
+package com.fangjia.fsh.api.conf;
 
 import org.cxytiandi.conf.client.annotation.ConfField;
 import org.cxytiandi.conf.client.annotation.CxytianDiConf;

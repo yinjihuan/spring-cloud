@@ -3,10 +3,9 @@ package com.fangjia.fsh.api.filter;
 import com.fangjia.common.base.ResponseCode;
 import com.fangjia.common.base.ResponseData;
 import com.fangjia.common.util.JsonUtils;
-import com.fangjia.fsh.api.config.BasicConf;
+import com.fangjia.fsh.api.conf.BasicConf;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

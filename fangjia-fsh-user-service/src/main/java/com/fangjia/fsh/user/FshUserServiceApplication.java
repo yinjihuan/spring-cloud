@@ -26,7 +26,7 @@ public class FshUserServiceApplication {
         // 启动参数设置，比如自动生成端口
         new StartCommand(args);
         // 启动时初始化配置信息
-        System.setProperty("smconf.conf.package", "com.fangjia.fsh.user.config");
+        System.setProperty("smconf.conf.package", "com.fangjia.fsh.user.conf");
         context = SpringApplication.run(FshUserServiceApplication.class, args);
     }
 }

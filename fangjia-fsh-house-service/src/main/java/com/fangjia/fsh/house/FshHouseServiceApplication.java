@@ -27,7 +27,7 @@ public class FshHouseServiceApplication {
         // 启动参数设置，比如自动生成端口
         new StartCommand(args);
         // 启动时初始化配置信息
-        System.setProperty("smconf.conf.package", "com.fangjia.fsh.house.config");
+        System.setProperty("smconf.conf.package", "com.fangjia.fsh.house.conf");
         context = SpringApplication.run(FshHouseServiceApplication.class, args);
     }
 }

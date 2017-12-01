@@ -1,4 +1,4 @@
-package com.fangjia.fsh.substitution.config;
+package com.fangjia.fsh.substitution.conf;
 
 import org.cxytiandi.conf.client.annotation.ConfField;
 import org.cxytiandi.conf.client.annotation.CxytianDiConf;
