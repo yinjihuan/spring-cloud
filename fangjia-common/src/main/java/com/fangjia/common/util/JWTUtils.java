@@ -3,7 +3,6 @@ package com.fangjia.common.util;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Date;
-import org.springframework.util.StringUtils;
 import com.fangjia.common.base.ResponseCode;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

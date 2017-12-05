@@ -12,7 +12,7 @@ import org.cxytiandi.conf.client.annotation.CxytianDiConf;
 @CxytianDiConf(system = "fangjia-common", env = true, prefix = "eureka")
 public class EurekaConf {
     @ConfField("Eureka注册中心地址")
-    private String defaultZone = "http://goojia:goojia123456@master:8761/eureka/";
+    private String defaultZone = "http://yinjihuan:123456@master:8761/eureka/";
 
     public String getDefaultZone() {
         return defaultZone;
