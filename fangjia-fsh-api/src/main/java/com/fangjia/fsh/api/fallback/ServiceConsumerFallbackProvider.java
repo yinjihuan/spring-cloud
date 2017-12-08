@@ -62,7 +62,9 @@ public class ServiceConsumerFallbackProvider implements ZuulFallbackProvider {
 			public InputStream getBody() throws IOException {
 				RequestContext ctx = RequestContext.getCurrentContext();
 				Throwable throwable = ctx.getThrowable();
-				log.error("", throwable.getCause());
+				if (throwable != null) {
+					log.error("", throwable.getCause());
+				}
 				ResponseData data = ResponseData.fail("服务器内部错误", ResponseCode.SERVER_ERROR_CODE.getCode());
 				return new ByteArrayInputStream(JsonUtils.toJson(data).getBytes());
 			}

@@ -28,12 +28,12 @@ public class HouseServiceImpl extends EntityService<HouseInfo> implements HouseS
 
 	@Override
 	public HouseInfo getHouseInfo(Long houseId) {
-		houseProcessor.addHouseOutput().send(MessageBuilder.withPayload("hello").build());
+		//houseProcessor.addHouseOutput().send(MessageBuilder.withPayload("hello").build());
 		logger.info("查询房产信息");
-		List<HouseInfo> list = super.list();
-		for (HouseInfo house : list) {
+		//List<HouseInfo> list = super.list();
+		//for (HouseInfo house : list) {
 			//System.err.println(house.getName());
-		}
+		//}
 		return new HouseInfo(1L, "上海", "虹口", "玉田新村");
 	}
 
