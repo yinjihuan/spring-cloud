@@ -8,6 +8,9 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 服务降级过滤器
  *
@@ -44,8 +47,9 @@ public class DownGradeFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         Object serviceId = ctx.get("serviceId");
-        if (serviceId != null) {
-            if (basicConf != null && basicConf.getDownGradeServiceStr().contains(serviceId.toString())) {
+        if (serviceId != null && basicConf != null) {
+            List<String> serviceIds = Arrays.asList(basicConf.getDownGradeServiceStr().split(","));
+            if (serviceIds.contains(serviceId.toString())) {
                 ctx.setSendZuulResponse(false);
                 ctx.set("isSuccess", false);
                 ResponseData data = ResponseData.fail("服务降级中", ResponseCode.DOWNGRADE.getCode());

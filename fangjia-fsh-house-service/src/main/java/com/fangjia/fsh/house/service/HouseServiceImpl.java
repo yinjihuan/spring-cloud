@@ -34,6 +34,9 @@ public class HouseServiceImpl extends EntityService<HouseInfo> implements HouseS
 		//for (HouseInfo house : list) {
 			//System.err.println(house.getName());
 		//}
+		try {
+			Thread.sleep(100);
+		} catch (Exception e){}
 		return new HouseInfo(1L, "上海", "虹口", "玉田新村");
 	}
 

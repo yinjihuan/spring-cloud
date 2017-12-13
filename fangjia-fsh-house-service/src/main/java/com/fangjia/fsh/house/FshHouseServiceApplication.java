@@ -1,12 +1,12 @@
 package com.fangjia.fsh.house;
 
 import com.fangjia.common.base.StartCommand;
+import com.fangjia.common.listenter.InitApiLimitRateListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -28,6 +28,8 @@ public class FshHouseServiceApplication {
         new StartCommand(args);
         // 启动时初始化配置信息
         System.setProperty("smconf.conf.package", "com.fangjia.fsh.house.conf");
-        context = SpringApplication.run(FshHouseServiceApplication.class, args);
+        SpringApplication application = new SpringApplication(FshHouseServiceApplication.class);
+        application.addListeners(new InitApiLimitRateListener("com.fangjia.fsh.house.controller"));
+        context = application.run(args);
     }
 }

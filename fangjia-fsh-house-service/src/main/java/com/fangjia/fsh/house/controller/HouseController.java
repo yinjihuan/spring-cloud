@@ -1,5 +1,6 @@
 package com.fangjia.fsh.house.controller;
 
+import com.fangjia.common.anno.ApiRateLimit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.fangjia.common.base.ResponseData;
@@ -30,6 +31,7 @@ public class HouseController {
 	 * @param houseId 房产编号
 	 * @return 
 	 */
+	@ApiRateLimit(confKey = "open.api.hosueInfo")
 	@GetMapping("/{houseId}")
 	public ResponseData hosueInfo(@PathVariable("houseId")Long houseId, HttpServletRequest request) {
 		String uid = request.getHeader("uid");
