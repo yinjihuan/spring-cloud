@@ -39,9 +39,15 @@ public class GrayPushFilter extends ZuulFilter {
 
     @Override
     public Object run() {
+        RequestContext ctx = RequestContext.getCurrentContext();
+        // AuthFilter验证成功之后设置的用户编号
+        String loginUserId = ctx.getZuulRequestHeaders().get("uid");
         RibbonFilterContextHolder.clearCurrentContext();
-        RibbonFilterContextHolder.getCurrentContext().add("userId", "1002");
+        RibbonFilterContextHolder.getCurrentContext().add("userId", loginUserId);
+        // 灰度发布的服务信息
+        System.err.println("HHH:"+basicConf.getGrayPushServers());
         RibbonFilterContextHolder.getCurrentContext().add("servers", basicConf.getGrayPushServers());
+        // 灰度发布的用户ID信息
         RibbonFilterContextHolder.getCurrentContext().add("userIds", basicConf.getGrayPushUsers());
         return null;
     }

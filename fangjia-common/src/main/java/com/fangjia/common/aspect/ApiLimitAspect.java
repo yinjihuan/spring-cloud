@@ -30,8 +30,8 @@ public class ApiLimitAspect {
 		Object result = null;
 		Semaphore semap = null;
 		Class<?> clazz = joinPoint.getTarget().getClass();
-		Map<String, String> map = isRateLimit(clazz, joinPoint.getSignature().getName(), joinPoint.getArgs());
-		String key = map.get("key");
+		String key = getRateLimitKey(clazz, joinPoint.getSignature().getName());
+
 		if (key != null) {
 			semap = semaphoreMap.get(key);
 		} else {
@@ -48,18 +48,17 @@ public class ApiLimitAspect {
 		return result;
 	}
 	
-	private Map<String, String> isRateLimit(Class<?> clazz, String methodName, Object[] args) {
+	private String getRateLimitKey(Class<?> clazz, String methodName) {
 		Map<String, String> map = new HashMap<String, String>();
 		for (Method method : clazz.getDeclaredMethods()) {
 			if(method.getName().equals(methodName)){
 				if (method.isAnnotationPresent(ApiRateLimit.class)) {
 					String key = method.getAnnotation(ApiRateLimit.class).confKey();
-					map.put("key", key);
-					break;
+					return key;
 				}
 			}
 		}
-		return map;
+		return null;
 	}
 
 

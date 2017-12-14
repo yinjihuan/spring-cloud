@@ -7,6 +7,7 @@ import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.RoundRobinRule;
 import com.netflix.loadbalancer.Server;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,10 +15,10 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 灰度发布转发规则
+ * 灰度发布转发规则，基于RoundRobinRule规则改造
  *
  * @author yinjihuan
- * @create 2017-11-16 12:44
+ *
  **/
 public class GrayPushRule extends AbstractLoadBalancerRule {
     private AtomicInteger nextServerCyclicCounter;
@@ -39,6 +40,24 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
             log.warn("no load balancer");
             return null;
         } else {
+            // 当前有灰度的用户和灰度的服务配置信息，并且灰度的服务在所有服务中则返回该灰度服务给用户
+            String curUserId = RibbonFilterContextHolder.getCurrentContext().get("userId");
+            String userIds = RibbonFilterContextHolder.getCurrentContext().get("userIds");
+            String servers = RibbonFilterContextHolder.getCurrentContext().get("servers");
+            System.out.println("servers:"+servers);
+            List<String> grayServers = Arrays.asList(servers.split(","));
+            if (StringUtils.isNotBlank(userIds) && StringUtils.isNotBlank(curUserId)) {
+                String[] uids = userIds.split(",");
+                if (Arrays.asList(uids).contains(curUserId)) {
+                    List<Server> allServers = lb.getAllServers();
+                    for (Server server : allServers) {
+                        if (grayServers.contains(server.getHostPort())) {
+                            return server;
+                        }
+                    }
+                }
+            }
+
             Server server = null;
             int count = 0;
 
@@ -46,6 +65,9 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
                 if (server == null && count++ < 10) {
                     List<Server> reachableServers = lb.getReachableServers();
                     List<Server> allServers = lb.getAllServers();
+                    // 移除已经设置为灰度发布的服务信息
+                    reachableServers = removeReachableServer(reachableServers, servers);
+                    allServers = removeAllServer(allServers, servers);
                     int upCount = reachableServers.size();
                     int serverCount = allServers.size();
                     if (upCount != 0 && serverCount != 0) {
@@ -74,6 +96,29 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
                 return server;
             }
         }
+    }
+
+    private List<Server> removeReachableServer(List<Server> reachableServers, String servers) {
+        List<Server> newReachableServers = new ArrayList<Server>();
+        List<String> grayServers = Arrays.asList(servers.split(","));
+        for (Server server : reachableServers) {
+            String hostPort = server.getHostPort();
+            if (!grayServers.contains(hostPort)) {
+                newReachableServers.add(server);
+            }
+        }
+        return newReachableServers;
+    }
+    private List<Server> removeAllServer(List<Server> allServers, String servers) {
+        List<Server> newAllServers = new ArrayList<Server>();
+        List<String> grayServers = Arrays.asList(servers.split(","));
+        for (Server server : allServers) {
+            String hostPort = server.getHostPort();
+            if (!grayServers.contains(hostPort)) {
+                newAllServers.add(server);
+            }
+        }
+        return newAllServers;
     }
 
     private int incrementAndGetModulo(int modulo) {
