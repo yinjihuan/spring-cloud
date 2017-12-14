@@ -4,6 +4,7 @@ import de.codecentric.boot.admin.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -39,5 +40,15 @@ public class AdminApplication {
             // 让客户端能够通过http方式进行身份认证
             http.httpBasic();
         }
+    }
+
+    @Configuration
+    public static class MailNotifierConfiguration {
+
+        @Bean
+        public DingDingNotifier dingDingNotifier() {
+            return new DingDingNotifier();
+        }
+
     }
 }
