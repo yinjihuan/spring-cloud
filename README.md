@@ -22,6 +22,7 @@
 - Spring Boot Admin管理监控数据：http://cxytiandi.com/blog/detail/12880
 - Hystrix 配置信息：http://cxytiandi.com/blog/detail/13127
 - Spring Cloud中使用Hystrix 线程隔离导致ThreadLocal数据丢失：http://cxytiandi.com/blog/detail/13331
+- Spring Boot Admin监控服务上下线邮件通知：http://cxytiandi.com/blog/detail/13376
 
 # 作者
 - 尹吉欢 1304489315@qq.com
