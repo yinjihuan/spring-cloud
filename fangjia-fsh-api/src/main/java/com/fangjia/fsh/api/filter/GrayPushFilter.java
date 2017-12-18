@@ -1,7 +1,7 @@
 package com.fangjia.fsh.api.filter;
 
 import com.fangjia.fsh.api.conf.BasicConf;
-import com.fangjia.fsh.api.support.RibbonFilterContextHolder;
+import com.fangjia.common.support.RibbonFilterContextHolder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,6 @@ public class GrayPushFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         // AuthFilter验证成功之后设置的用户编号
         String loginUserId = ctx.getZuulRequestHeaders().get("uid");
-        RibbonFilterContextHolder.clearCurrentContext();
         RibbonFilterContextHolder.getCurrentContext().add("userId", loginUserId);
         // 灰度发布的服务信息
         System.err.println("HHH:"+basicConf.getGrayPushServers());

@@ -1,7 +1,6 @@
 package com.fangjia.fsh.api.rule;
 
-import com.fangjia.fsh.api.support.RibbonFilterContext;
-import com.fangjia.fsh.api.support.RibbonFilterContextHolder;
+import com.fangjia.common.support.RibbonFilterContextHolder;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.ILoadBalancer;
@@ -66,8 +65,8 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
                     List<Server> reachableServers = lb.getReachableServers();
                     List<Server> allServers = lb.getAllServers();
                     // 移除已经设置为灰度发布的服务信息
-                    reachableServers = removeReachableServer(reachableServers, servers);
-                    allServers = removeAllServer(allServers, servers);
+                    reachableServers = removeServer(reachableServers, servers);
+                    allServers = removeServer(allServers, servers);
                     int upCount = reachableServers.size();
                     int serverCount = allServers.size();
                     if (upCount != 0 && serverCount != 0) {
@@ -98,27 +97,17 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
         }
     }
 
-    private List<Server> removeReachableServer(List<Server> reachableServers, String servers) {
-        List<Server> newReachableServers = new ArrayList<Server>();
-        List<String> grayServers = Arrays.asList(servers.split(","));
-        for (Server server : reachableServers) {
-            String hostPort = server.getHostPort();
-            if (!grayServers.contains(hostPort)) {
-                newReachableServers.add(server);
-            }
-        }
-        return newReachableServers;
-    }
-    private List<Server> removeAllServer(List<Server> allServers, String servers) {
-        List<Server> newAllServers = new ArrayList<Server>();
+
+    private List<Server> removeServer(List<Server> allServers, String servers) {
+        List<Server> newServers = new ArrayList<Server>();
         List<String> grayServers = Arrays.asList(servers.split(","));
         for (Server server : allServers) {
             String hostPort = server.getHostPort();
             if (!grayServers.contains(hostPort)) {
-                newAllServers.add(server);
+                newServers.add(server);
             }
         }
-        return newAllServers;
+        return newServers;
     }
 
     private int incrementAndGetModulo(int modulo) {

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fangjia.common.base.ResponseData;
 import com.fangjia.fsh.substitution.service.SubstitutionService;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 房产置换API
  *
@@ -32,7 +34,9 @@ public class SubstitutionController {
 	 * @return
 	 */
 	@GetMapping("/{sid}")
-	public ResponseData substitutionInfo(@PathVariable("sid") Long sid) {
+	public ResponseData substitutionInfo(@PathVariable("sid") Long sid, HttpServletRequest request) {
+		String uid = request.getHeader("uid");
+		System.err.println("==="+uid);
 		logger.info("获取置换信息");
 		return ResponseData.ok(substitutionService.getSubstitutionInfo(sid));
 	}

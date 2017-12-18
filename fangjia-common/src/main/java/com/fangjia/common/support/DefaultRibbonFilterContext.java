@@ -1,4 +1,4 @@
-package com.fangjia.fsh.api.support;
+package com.fangjia.common.support;
 
 
 import java.util.Collections;
