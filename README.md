@@ -13,6 +13,7 @@
 - Spring Cloud中Feign如何统一设置验证token：http://cxytiandi.com/blog/detail/12369
 - spring Cloud统一异常处理：http://cxytiandi.com/blog/detail/3106
 - Spring Cloud 如何选择分布式配置中心：http://cxytiandi.com/blog/detail/12466
+- Ribbon负载均衡策略介绍：http://cxytiandi.com/blog/detail/13598
 - Spring Cloud Ribbon 重试机制：http://cxytiandi.com/blog/detail/12507
 - Spring Cloud Zuul结合Smconf配置中心动态进行IP黑名单限制：http://cxytiandi.com/blog/detail/12508
 - Spring Cloud Zuul Filter 使用小经验：http://cxytiandi.com/blog/detail/12632
