@@ -40,8 +40,8 @@
             <artifactId>spring-cloud-starter-ribbon</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
         <dependency>
         	<groupId>com.fangjia</groupId>
@@ -84,6 +84,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
         </dependency>
     </dependencies>
 

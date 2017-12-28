@@ -22,4 +22,9 @@ public class HouseRemoteClientHystrix implements HouseRemoteClient {
     public HouseInfoDto hosueInfo(Long houseId) {
         return new HouseInfoDto();
     }
+
+    @Override
+    public String hello() {
+        return null;
+    }
 }
