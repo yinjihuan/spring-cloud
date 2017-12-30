@@ -2,6 +2,7 @@ package com.fangjia.fsh.house.controller;
 
 import com.fangjia.common.anno.ApiRateLimit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import com.fangjia.common.base.ResponseData;
 import com.fangjia.fsh.house.service.HouseService;
@@ -20,7 +21,10 @@ public class HouseController {
 	
 	@Autowired
 	private HouseService houseService;
-	
+
+	@Value("${server.port}")
+	private String serverPort;
+
 	@GetMapping("/list/{eid}/{uid}")
 	public ResponseData hosueList(@PathVariable("eid")Long eid, @PathVariable("uid")String uid) {
 		return ResponseData.ok(houseService.queryAll(eid, uid));
@@ -38,5 +42,11 @@ public class HouseController {
 		System.err.println("==="+uid);
 		return ResponseData.ok(houseService.getHouseInfo(houseId));
 	}
-	
+
+	@GetMapping("/hello")
+	public String hello() throws  Exception {
+		System.err.println("call hello");
+		//Thread.sleep(6000);
+		return "Hello"+serverPort;
+	}
 }

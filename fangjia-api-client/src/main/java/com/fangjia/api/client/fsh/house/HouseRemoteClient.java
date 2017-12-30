@@ -33,5 +33,7 @@ public interface HouseRemoteClient {
 	 */
 	@GetMapping("/{houseId}")
 	HouseInfoDto hosueInfo(@PathVariable("houseId")Long houseId);
-	
+
+	@GetMapping("/hello")
+    String hello();
 }
