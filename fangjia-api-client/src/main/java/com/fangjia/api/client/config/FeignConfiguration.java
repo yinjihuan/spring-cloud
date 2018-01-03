@@ -2,11 +2,15 @@ package com.fangjia.api.client.config;
 
 import com.fangjia.api.client.config.FeignBasicAuthRequestInterceptor;
 import feign.Contract;
+import feign.Feign;
 import feign.Request;
 import feign.auth.BasicAuthRequestInterceptor;
+import feign.codec.Decoder;
+import feign.codec.Encoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import feign.Logger;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class FeignConfiguration {
@@ -40,4 +44,20 @@ public class FeignConfiguration {
     public Request.Options options() {
         return new Request.Options(5000, 10000);
     }
+
+    /*@Bean
+    public Decoder decoder() {
+     return new MyDecoder();
+    }
+
+    @Bean
+    public Encoder encoder() {
+        return new MyEncoder();
+    }*/
+
+//    @Bean
+//    @Scope("prototype")
+//    public Feign.Builder feignBuilder() {
+//        return Feign.builder();
+//    }
 }

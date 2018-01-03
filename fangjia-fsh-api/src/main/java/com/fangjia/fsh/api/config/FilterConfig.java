@@ -42,4 +42,13 @@ public class FilterConfig {
     public AuthFilter authFilter() {
         return new AuthFilter();
     }
+
+    //@Bean
+    public DebugRequest debugRequest() {
+        return new DebugRequest();
+    }
+    @Bean
+    public ErrorFilter errorFilter() {
+        return new ErrorFilter();
+    }
 }

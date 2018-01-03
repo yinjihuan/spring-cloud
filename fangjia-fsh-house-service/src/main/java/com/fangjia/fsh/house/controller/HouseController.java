@@ -1,6 +1,7 @@
 package com.fangjia.fsh.house.controller;
 
 import com.fangjia.common.anno.ApiRateLimit;
+import com.fangjia.fsh.house.po.HouseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -49,4 +50,21 @@ public class HouseController {
 		//Thread.sleep(6000);
 		return "Hello"+serverPort;
 	}
+
+	@GetMapping("/data")
+	public HouseInfo getData(@RequestParam("name") String name) {
+		return new HouseInfo(1L, "上海", "虹口", "东体小区");
+	}
+
+	@GetMapping("/data/{name}")
+	public String getData2(@PathVariable("name") String name) {
+		return name;
+	}
+
+	@PostMapping("/save")
+	public Long addData(@RequestBody HouseInfo houseInfo) {
+		System.out.println(houseInfo.getName());
+		return 1001L;
+	}
+
 }
