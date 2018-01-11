@@ -6,13 +6,12 @@ import org.springframework.context.annotation.ImportResource;
 
 /**
  * 不分库，之分表案例
- *
+ * @author yinjihuan
  */
 @SpringBootApplication
 @ImportResource(locations = { "classpath:sharding.xml" })
 public class ShardingTableApplication {
 	public static void main(String[] args) {
-		System.out.println(1002%4);
-		//SpringApplication.run(ShardingTableApplication.class, args);
+		SpringApplication.run(ShardingTableApplication.class, args);
 	}
 }

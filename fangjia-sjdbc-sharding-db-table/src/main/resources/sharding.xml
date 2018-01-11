@@ -10,26 +10,38 @@
                         http://www.dangdang.com/schema/ddframe/rdb 
                         http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd 
                         ">
-    
+    <!-- inline表达式报错 -->
+    <context:property-placeholder  ignore-unresolvable="true"/> 
+                       
     <!-- 主数据 -->
     <bean id="ds_0" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" primary="true">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/ds_0?characterEncoding=utf-8&amp;useInformationSchema=true" />
+        <property name="url" value="jdbc:mysql://localhost:3306/cxytiandi_0?characterEncoding=utf-8" />
         <property name="username" value="root" />
         <property name="password" value="" />
     </bean>
     
-    <!-- 从数据 -->
-    <bean id="ds_1" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+ 	<bean id="ds_1" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/ds_1?characterEncoding=utf-8" />
+        <property name="url" value="jdbc:mysql://localhost:3306/cxytiandi_1?characterEncoding=utf-8" />
         <property name="username" value="root" />
         <property name="password" value="" />
     </bean>
     
-    <!-- 读写分离数据源 -->
-    <rdb:master-slave-data-source id="dataSource" master-data-source-ref="ds_0" slave-data-sources-ref="ds_1"/>
-     
+    <rdb:strategy id="databaseShardingStrategyHouseLouDong" sharding-columns="city" algorithm-class="com.fangjia.sjdbc.SingleKeyDbShardingAlgorithm"/>
+    <rdb:strategy id="tableShardingStrategyHouseLouDong" sharding-columns="id" algorithm-class="com.fangjia.sjdbc.UserSingleKeyTableShardingAlgorithm"/>
+
+    <rdb:data-source id="dataSource">
+        <rdb:sharding-rule data-sources="ds_0, ds_1">
+            <rdb:table-rules>
+                <rdb:table-rule logic-table="user" actual-tables="user_${0..1}" database-strategy="databaseShardingStrategyHouseLouDong" table-strategy="tableShardingStrategyHouseLouDong">
+                </rdb:table-rule>
+            </rdb:table-rules>
+        </rdb:sharding-rule>
+    </rdb:data-source>
+    
+    
+    
     <!-- 增强版JdbcTemplate -->
     <bean id="cxytiandiJdbcTemplate" class="com.cxytiandi.jdbc.CxytiandiJdbcTemplate">
     	<property name="dataSource" ref="dataSource"/>
