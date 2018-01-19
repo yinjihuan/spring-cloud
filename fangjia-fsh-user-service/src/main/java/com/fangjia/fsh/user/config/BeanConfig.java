@@ -20,7 +20,7 @@ public class BeanConfig {
      */
     @Bean(autowire= Autowire.BY_NAME)
     public CxytiandiJdbcTemplate cxytiandiJdbcTemplate() {
-        return new CxytiandiJdbcTemplate("com.fangjia.fsh.house.po");
+        return new CxytiandiJdbcTemplate("com.fangjia.fsh.user.po");
     }
 
 }
