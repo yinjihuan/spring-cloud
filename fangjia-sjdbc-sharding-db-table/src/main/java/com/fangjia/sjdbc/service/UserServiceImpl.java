@@ -15,7 +15,7 @@ public class UserServiceImpl extends EntityService<User> implements UserService 
 	}
 
 	public Long add(User user) {
-		return (Long) super.save(user);
+		return (Long) super.save(user, "id");
 	}
 
 	@Override

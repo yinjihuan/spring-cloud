@@ -26,7 +26,7 @@ public class UserController {
 	public Object add() {
 		for (long i = 0; i < 100; i++) {
 			User user = new User();
-			user.setId(i);
+			//user.setId(i);
 			int random = new Random().nextInt(100);
 			if (random % 2 == 0) {
 				user.setCity("上海");
