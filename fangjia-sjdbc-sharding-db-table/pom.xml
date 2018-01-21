@@ -3,16 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.fangjia</groupId>
-	<artifactId>fangjia-sjdbc-read-write</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>fangjia-sjdbc-sharding-db-table</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>fangjia-sjdbc-read-write</name>
+	<name>fangjia-sjdbc-sharding-db-table</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -31,7 +32,7 @@
 		<dependency>
 			<groupId>com.cxytiandi</groupId>
 			<artifactId>cxytiandi-jdbc</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -48,5 +49,24 @@
 			<artifactId>sharding-jdbc-config-spring</artifactId>
 			<version>1.5.4.1</version>
 		</dependency>
+		 <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+          <dependency>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
 	</dependencies>
+	 <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
