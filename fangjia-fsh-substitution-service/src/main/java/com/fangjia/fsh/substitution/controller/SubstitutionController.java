@@ -3,6 +3,8 @@ package com.fangjia.fsh.substitution.controller;
 import com.fangjia.api.client.fsh.house.HouseRemoteClient;
 import com.fangjia.fsh.substitution.dto.HouseInfo;
 import com.netflix.discovery.EurekaClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import feign.Feign;
 import feign.RequestLine;
 import org.slf4j.Logger;
@@ -63,14 +65,22 @@ public class SubstitutionController {
 	}
 
 	@GetMapping("/callHello")
+	@HystrixCommand(fallbackMethod = "defaultCallHello", commandProperties = {
+			@HystrixProperty(name="execution.isolation.thread.interruptOnTimeout", value = "false")
+	})
 	public String callHello() {
 		//return restTemplate.getForObject("http://localhost:8081/house/hello", String.class);
-		//String result = restTemplate.getForObject("http://fsh-house/house/hello", String.class);
-		String result = houseRemoteClient.hello();
+		String result = restTemplate.getForObject("http://fsh-house/house/hello", String.class);
+		/*String result = houseRemoteClient.hello();
 		System.out.println("调用结果：" + result);
 		HelloRemote helloRemote = Feign.builder().target(HelloRemote.class,"http://localhost:8081");
-		System.out.println("调用结果2："+helloRemote.hello());
+		System.out.println("调用结果2："+helloRemote.hello());*/
 		return result;
+	}
+
+
+	public String defaultCallHello() {
+		return "fail";
 	}
 
 	/**
