@@ -32,6 +32,17 @@
 - fangjia-boot-admin：Spring Boot Admin来管理服务的监控数据
 - fangjia-common：公共的包，放一些通用的工具类
 - fangjia-eureka：Eureka注册中心
+- fangjia-fsh-api：API网关
+- fangjia-fsh-house-service：house服务
+- fangjia-fsh-substitution-service：substitution服务
+- fangjia-fsh-user-service：用户服务，登陆接口，swagger使用示列
+- fangjia-hystrix-dashboard：hystrix-dashboard,turbine示列
+- fangjia-job：分布式任务调度
+- fangjia-sjdbc-read-write：数据库读写分离
+- fangjia-sjdbc-sharding-db-table：数据库分库分表
+- fangjia-sjdbc-sharding-table：数据库分表
+- fangjia-zipkin：调用链
+- hystrix：hystrix单独使用
 
 # 作者
 - 尹吉欢 1304489315@qq.com
