@@ -25,6 +25,25 @@
 - Spring Cloud中使用Hystrix 线程隔离导致ThreadLocal数据丢失：http://cxytiandi.com/blog/detail/13331
 - Spring Boot Admin监控服务上下线邮件通知：http://cxytiandi.com/blog/detail/13376
 
+
+# 项目代码工程目录讲解
+- fangjia-api-client：Feign客户端，所有调用的API定义在里面，相当于API的SDK
+- fangjia-auth-service：服务之间内部调用认证的服务，服务调用时需要来这边进行认证，获取访问Token
+- fangjia-boot-admin：Spring Boot Admin来管理服务的监控数据
+- fangjia-common：公共的包，放一些通用的工具类
+- fangjia-eureka：Eureka注册中心
+- fangjia-fsh-api：API网关
+- fangjia-fsh-house-service：house服务
+- fangjia-fsh-substitution-service：substitution服务
+- fangjia-fsh-user-service：用户服务，登陆接口，swagger使用示列
+- fangjia-hystrix-dashboard：hystrix-dashboard,turbine示列
+- fangjia-job：分布式任务调度
+- fangjia-sjdbc-read-write：数据库读写分离
+- fangjia-sjdbc-sharding-db-table：数据库分库分表
+- fangjia-sjdbc-sharding-table：数据库分表
+- fangjia-zipkin：调用链
+- hystrix：hystrix单独使用
+
 # 作者
 - 尹吉欢 1304489315@qq.com
 - 博客 http://cxytiandi.com/blogs/yinjihuan
