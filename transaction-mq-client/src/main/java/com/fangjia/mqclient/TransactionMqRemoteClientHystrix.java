@@ -3,10 +3,8 @@ package com.fangjia.mqclient;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.cxytiandi.jdbc.PageQueryParam;
-import com.fangjia.common.base.ResponseData;
 import com.fangjia.mqclient.dto.TransactionMessage;
+import com.fangjia.mqclient.query.MessageQuery;
 
 /**
  * 事务消息服务调用客户端
@@ -16,43 +14,43 @@ import com.fangjia.mqclient.dto.TransactionMessage;
 public class TransactionMqRemoteClientHystrix implements TransactionMqRemoteClient {
 
 	@Override
-	public ResponseData sendMessage(TransactionMessage message) {
-		return ResponseData.ok(false);
+	public boolean sendMessage(TransactionMessage message) {
+		return false;
 	}
 
 	@Override
-	public ResponseData sendMessage(List<TransactionMessage> messages) {
-		return ResponseData.ok(false);
+	public boolean sendMessage(List<TransactionMessage> messages) {
+		return false;
 	}
 
 	@Override
-	public ResponseData confirmCustomerMessage(String customerSystem, Long messageId) {
-		return ResponseData.ok(false);
+	public boolean confirmCustomerMessage(String customerSystem, Long messageId) {
+		return false;
 	}
 
 	@Override
-	public ResponseData findByWatingMessage(int limit) {
-		return ResponseData.ok(new ArrayList<TransactionMessage>());
+	public List<TransactionMessage> findByWatingMessage(int limit) {
+		return new ArrayList<TransactionMessage>();
 	}
 
 	@Override
-	public ResponseData confirmDieMessage(Long messageId) {
-		return ResponseData.ok(false);
+	public boolean confirmDieMessage(Long messageId) {
+		return false;
 	}
 
 	@Override
-	public ResponseData incrSendCount(Long messageId, Date sendDate) {
-		return ResponseData.ok(false);
+	public boolean incrSendCount(Long messageId, Date sendDate) {
+		return false;
 	}
 
 	@Override
-	public ResponseData retrySendDieMessage() {
-		return ResponseData.ok(false);
+	public boolean retrySendDieMessage() {
+		return false;
 	}
 
 	@Override
-	public ResponseData findMessageByPage(PageQueryParam query, int status) {
-		return ResponseData.ok(new ArrayList<TransactionMessage>());
+	public List<TransactionMessage> findMessageByPage(MessageQuery query) {
+		return new ArrayList<TransactionMessage>();
 	}
 	
 }

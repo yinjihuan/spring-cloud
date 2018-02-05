@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.cxytiandi.jdbc.PageQueryParam;
-import com.fangjia.common.base.ResponseData;
 import com.fangjia.transaction_mq.enums.TransactionMessageStatusEnum;
 import com.fangjia.transaction_mq.po.TransactionMessage;
+import com.fangjia.transaction_mq.query.MessageQuery;
 import com.fangjia.transaction_mq.service.TransactionMessageService;
 
 /**
@@ -31,8 +32,8 @@ public class TransactionMessageController {
 	 * @return true 成功 | false 失败
 	 */
 	@PostMapping("/send")
-	public ResponseData sendMessage(TransactionMessage message) {
-		return ResponseData.ok(transactionMessageService.sendMessage(message));
+	public boolean sendMessage(@RequestBody TransactionMessage message) {
+		return transactionMessageService.sendMessage(message);
 	}
 
 	/**
@@ -41,8 +42,8 @@ public class TransactionMessageController {
 	 * @return true 成功 | false 失败
 	 */
 	@PostMapping("/sends")
-	public ResponseData sendMessage(List<TransactionMessage> messages) {
-		return ResponseData.ok(transactionMessageService.sendMessage(messages));
+	public boolean sendMessage(@RequestBody List<TransactionMessage> messages) {
+		return transactionMessageService.sendMessage(messages);
 	}
 
 	/**
@@ -51,9 +52,10 @@ public class TransactionMessageController {
 	 * @param messageId	消息ID
 	 * @return
 	 */
-	@GetMapping("/confirm/customer")
-	public ResponseData confirmCustomerMessage(String customerSystem, Long messageId) {
-		return ResponseData.ok(transactionMessageService.confirmCustomerMessage(customerSystem, messageId));
+	@PostMapping("/confirm/customer")
+	public boolean confirmCustomerMessage(@RequestParam("customerSystem")String customerSystem, 
+			@RequestParam("messageId")Long messageId) {
+		return transactionMessageService.confirmCustomerMessage(customerSystem, messageId);
 	}
 
 	/**
@@ -62,8 +64,8 @@ public class TransactionMessageController {
 	 * @return
 	 */
 	@GetMapping("/wating")
-	public ResponseData findByWatingMessage(int limit) {
-		return ResponseData.ok(transactionMessageService.findByWatingMessage(limit));
+	public List<TransactionMessage> findByWatingMessage(@RequestParam("limit")int limit) {
+		return transactionMessageService.findByWatingMessage(limit);
 	}
 
 	/**
@@ -71,9 +73,9 @@ public class TransactionMessageController {
 	 * @param messageId 消息ID
 	 * @return
 	 */
-	@GetMapping("/confirm/die")
-	public ResponseData confirmDieMessage(Long messageId) {
-		return ResponseData.ok(transactionMessageService.confirmDieMessage(messageId));
+	@PostMapping("/confirm/die")
+	public boolean confirmDieMessage(@RequestParam("messageId")Long messageId) {
+		return transactionMessageService.confirmDieMessage(messageId);
 	}
 
 	/**
@@ -82,9 +84,9 @@ public class TransactionMessageController {
 	 * @param sendDate  发送时间（task服务中的时间，防止服务器之间时间不同步问题）
 	 * @return
 	 */
-	@GetMapping("/incrSendCount")
-	public ResponseData incrSendCount(Long messageId, Date sendDate) {
-		return ResponseData.ok(transactionMessageService.incrSendCount(messageId, sendDate));
+	@PostMapping("/incrSendCount")
+	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")Date sendDate) {
+		return transactionMessageService.incrSendCount(messageId, sendDate);
 	}
 
 	/**
@@ -92,8 +94,8 @@ public class TransactionMessageController {
 	 * @return
 	 */
 	@GetMapping("/send/retry")
-	public ResponseData retrySendDieMessage() {
-		return ResponseData.ok(transactionMessageService.retrySendDieMessage());
+	public boolean retrySendDieMessage() {
+		return transactionMessageService.retrySendDieMessage();
 	}
 
 	/**
@@ -102,9 +104,9 @@ public class TransactionMessageController {
 	 * @param status
 	 * @return
 	 */
-	@GetMapping("/query")
-	public ResponseData findMessageByPage(PageQueryParam query, int status) {
-		return ResponseData.ok(transactionMessageService.findMessageByPage(query, 
-				TransactionMessageStatusEnum.parse(status)));
+	@PostMapping("/query")
+	public List<TransactionMessage> findMessageByPage(@RequestBody MessageQuery query) {
+		return transactionMessageService.findMessageByPage(query, 
+				TransactionMessageStatusEnum.parse(query.getStatus()));
 	}
 }

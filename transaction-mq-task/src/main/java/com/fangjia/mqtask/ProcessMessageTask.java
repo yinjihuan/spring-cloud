@@ -61,9 +61,7 @@ public class ProcessMessageTask {
 	
 	private int process() throws Exception {
 		int sleepTime = 10000;	//默认执行完之后等等10秒
-		ResponseData responseData = transactionMqRemoteClient.findByWatingMessage(5000);
-		List<TransactionMessage> messageList = (List<TransactionMessage>) responseData.getData();
-		//如果消息多，则执行完之后不等待，直接继续执行
+		List<TransactionMessage> messageList = transactionMqRemoteClient.findByWatingMessage(5000);
 		if (messageList.size() == 5000) {
 			sleepTime = 0;
 		}

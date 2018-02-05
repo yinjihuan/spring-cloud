@@ -27,4 +27,8 @@ public interface HouseService {
 	 */
 	HouseInfo getHouseInfo(Long houseId);
 	
+	/**
+	 * 修改信息
+	 */
+	boolean update(HouseInfo info);
 }

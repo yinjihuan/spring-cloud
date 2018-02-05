@@ -3,28 +3,40 @@ package com.fangjia.mqclient.dto;
 import java.util.Date;
 
 public class TransactionMessage {
+	// 消息ID
 	private Long id;
 	
+	// 消息内容，JSON格式数据
 	private String message;
 	
+	// 发送给哪个队列
 	private String queue;
 	
+	// 哪个系统发送出去的
 	private String sendSystem;
 	
+	// 发送次数，每重新发送一次+1
 	private int sendCount;
 	
+	// 消息创建时间
 	private Date createDate;
 	
+	// 最近发送消息时间，每发送一次更新时间
 	private Date sendDate;
 	
+	// 状态：0等待消费  1已消费  2已死亡
 	private int status = 0;
 	
+	// 死亡次数条件，由使用方决定，默认为发送10次还没被消费则标记死亡,人工介入
 	private int dieCount = 10;
 	
+	// 消息被消费的时间
 	private Date customerDate;
 	
+	// 哪个系统消费了该消息
 	private String customerSystem;
 
+	// 消息死亡时间
 	private Date dieDate;
 	
 	public Long getId() {

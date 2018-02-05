@@ -2,13 +2,15 @@ package com.fangjia.mqclient;
 
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cxytiandi.jdbc.PageQueryParam;
-import com.fangjia.common.base.ResponseData;
 import com.fangjia.mqclient.dto.TransactionMessage;
+import com.fangjia.mqclient.query.MessageQuery;
 
 /**
  * 事务消息服务调用客户端
@@ -24,7 +26,7 @@ public interface TransactionMqRemoteClient {
 	 * @return true 成功 | false 失败
 	 */
 	@PostMapping("/send")
-	public ResponseData sendMessage(TransactionMessage message);
+	public boolean sendMessage(@RequestBody TransactionMessage message);
 
 	/**
 	 * 批量发送消息，只存储到消息表中，发送逻辑有具体的发送线程执行
@@ -32,7 +34,7 @@ public interface TransactionMqRemoteClient {
 	 * @return true 成功 | false 失败
 	 */
 	@PostMapping("/sends")
-	public ResponseData sendMessage(List<TransactionMessage> messages);
+	public boolean sendMessage(@RequestBody List<TransactionMessage> messages);
 
 	/**
 	 * 确认消息被消费
@@ -40,8 +42,9 @@ public interface TransactionMqRemoteClient {
 	 * @param messageId	消息ID
 	 * @return
 	 */
-	@GetMapping("/confirm/customer")
-	public ResponseData confirmCustomerMessage(String customerSystem, Long messageId);
+	@PostMapping("/confirm/customer")
+	public boolean confirmCustomerMessage(@RequestParam("customerSystem")String customerSystem, 
+			@RequestParam("messageId")Long messageId);
 
 	/**
 	 * 查询最早没有被消费的消息
@@ -49,15 +52,15 @@ public interface TransactionMqRemoteClient {
 	 * @return
 	 */
 	@GetMapping("/wating")
-	public ResponseData findByWatingMessage(int limit);
+	public List<TransactionMessage> findByWatingMessage(@RequestParam("limit")int limit);
 
 	/**
 	 * 确认消息死亡
 	 * @param messageId 消息ID
 	 * @return
 	 */
-	@GetMapping("/confirm/die")
-	public ResponseData confirmDieMessage(Long messageId);
+	@PostMapping("/confirm/die")
+	public boolean confirmDieMessage(@RequestParam("messageId")Long messageId);
 
 	/**
 	 * 累加发送次数
@@ -65,22 +68,23 @@ public interface TransactionMqRemoteClient {
 	 * @param sendDate  发送时间（task服务中的时间，防止服务器之间时间不同步问题）
 	 * @return
 	 */
-	@GetMapping("/incrSendCount")
-	public ResponseData incrSendCount(Long messageId, Date sendDate);
+	@PostMapping("/incrSendCount")
+	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")Date sendDate);
 
 	/**
 	 * 重新发送当前已死亡的消息
 	 * @return
 	 */
-	@GetMapping("/send/retry")
-	public ResponseData retrySendDieMessage();
+	@PostMapping("/send/retry")
+	public boolean retrySendDieMessage();
+	
 	/**
 	 * 分页查询具体状态的消息
 	 * @param query
 	 * @param status
 	 * @return
 	 */
-	@GetMapping("/query")
-	public ResponseData findMessageByPage(PageQueryParam query, int status);
+	@PostMapping("/query")
+	public List<TransactionMessage> findMessageByPage(@RequestBody MessageQuery query);
 	
 }

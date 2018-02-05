@@ -1,14 +1,25 @@
 package com.fangjia.fsh.house.controller;
 
-import com.fangjia.common.anno.ApiRateLimit;
-import com.fangjia.fsh.house.po.HouseInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
-import com.fangjia.common.base.ResponseData;
-import com.fangjia.fsh.house.service.HouseService;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fangjia.common.anno.ApiRateLimit;
+import com.fangjia.common.base.ResponseData;
+import com.fangjia.fsh.house.po.HouseInfo;
+import com.fangjia.fsh.house.service.HouseService;
+import com.fangjia.mqclient.TransactionMqRemoteClient;
+import com.fangjia.mqclient.dto.TransactionMessage;
 
 /**
  * 房产API
@@ -67,4 +78,12 @@ public class HouseController {
 		return 1001L;
 	}
 
+	/**
+	 * 测试可靠消息发送
+	 * @return
+	 */
+	@GetMapping("/sendMessage")
+	public Object sendMessage() {
+		return houseService.update(new HouseInfo(1L, "上海", "虹口", "东体小区"));
+	}
 }
