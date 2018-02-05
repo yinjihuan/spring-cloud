@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cxytiandi.jdbc.util.DateUtils;
-import com.fangjia.common.base.ResponseData;
 import com.fangjia.mqclient.TransactionMqRemoteClient;
 import com.fangjia.mqclient.dto.TransactionMessage;
 
@@ -23,6 +22,7 @@ import com.fangjia.mqclient.dto.TransactionMessage;
 public class ProcessMessageTask {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProcessMessageTask.class);
 	
+	@Autowired
 	private TransactionMqRemoteClient transactionMqRemoteClient;
 	
 	@Autowired
@@ -72,7 +72,6 @@ public class ProcessMessageTask {
 				
 				public void run() {
 					try {
-						System.out.println("发送具体消息：" + message.getId());
 						doProcess(message);
 					} catch (Exception e) {
 						LOGGER.error("", e);
@@ -101,6 +100,7 @@ public class ProcessMessageTask {
 			sendTime = message.getSendDate().getTime();
 		}
 		if (currentTime - sendTime > 60000) {
+			System.out.println("发送具体消息：" + message.getId());
 			
 			//向MQ发送消息
 			MessageDto messageDto = new MessageDto();

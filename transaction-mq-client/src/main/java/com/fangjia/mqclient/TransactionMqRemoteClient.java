@@ -35,7 +35,24 @@ public interface TransactionMqRemoteClient {
 	 */
 	@PostMapping("/sends")
 	public boolean sendMessage(@RequestBody List<TransactionMessage> messages);
+	
+	/**
+	 * 累加发送次数
+	 * @param messageId 消息ID
+	 * @param sendDate  发送时间（task服务中的时间，防止服务器之间时间不同步问题）
+	 * @return
+	 */
+	@PostMapping("/incrSendCount")
+	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")Date sendDate);
 
+	/**
+	 * 确认消息死亡
+	 * @param messageId 消息ID
+	 * @return
+	 */
+	@PostMapping("/confirm/die")
+	public boolean confirmDieMessage(@RequestParam("messageId")Long messageId);
+	
 	/**
 	 * 确认消息被消费
 	 * @param customerSystem  消费的系统
@@ -53,23 +70,6 @@ public interface TransactionMqRemoteClient {
 	 */
 	@GetMapping("/wating")
 	public List<TransactionMessage> findByWatingMessage(@RequestParam("limit")int limit);
-
-	/**
-	 * 确认消息死亡
-	 * @param messageId 消息ID
-	 * @return
-	 */
-	@PostMapping("/confirm/die")
-	public boolean confirmDieMessage(@RequestParam("messageId")Long messageId);
-
-	/**
-	 * 累加发送次数
-	 * @param messageId 消息ID
-	 * @param sendDate  发送时间（task服务中的时间，防止服务器之间时间不同步问题）
-	 * @return
-	 */
-	@PostMapping("/incrSendCount")
-	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")Date sendDate);
 
 	/**
 	 * 重新发送当前已死亡的消息
