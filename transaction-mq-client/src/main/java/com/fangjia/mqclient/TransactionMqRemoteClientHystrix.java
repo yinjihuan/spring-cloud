@@ -1,8 +1,9 @@
 package com.fangjia.mqclient;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import org.springframework.stereotype.Component;
+
 import com.fangjia.mqclient.dto.TransactionMessage;
 import com.fangjia.mqclient.query.MessageQuery;
 
@@ -11,6 +12,7 @@ import com.fangjia.mqclient.query.MessageQuery;
  * @author yinjihuan
  *
  */
+@Component
 public class TransactionMqRemoteClientHystrix implements TransactionMqRemoteClient {
 
 	@Override
@@ -39,7 +41,7 @@ public class TransactionMqRemoteClientHystrix implements TransactionMqRemoteClie
 	}
 
 	@Override
-	public boolean incrSendCount(Long messageId, Date sendDate) {
+	public boolean incrSendCount(Long messageId, String sendDate) {
 		return false;
 	}
 

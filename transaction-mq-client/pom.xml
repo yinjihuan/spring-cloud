@@ -32,11 +32,6 @@
 			<artifactId>fangjia-common</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>com.cxytiandi</groupId>
-			<artifactId>cxytiandi-jdbc</artifactId>
-			<version>1.0.2</version>
-		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

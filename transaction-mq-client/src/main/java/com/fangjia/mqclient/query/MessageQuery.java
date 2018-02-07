@@ -1,6 +1,6 @@
 package com.fangjia.mqclient.query;
 
-import com.cxytiandi.jdbc.PageQueryParam;
+import com.fangjia.common.base.PageQueryParam;
 
 public class MessageQuery extends PageQueryParam {
 

@@ -65,14 +65,7 @@ public class HouseServiceImpl extends EntityService<HouseInfo> implements HouseS
 			    new UpdateHouseNameDto(old.getCity(), old.getRegion(), old.getName(), info.getName())
 	    ));
 	    
-	    TransactionMessage message2 = new TransactionMessage();
-	    message2.setQueue("house_queue2");
-	    message2.setCreateDate(new Date()); 
-	    message2.setSendSystem("house-service");
-	    message2.setMessage(JsonUtils.toJson(
-			    new UpdateHouseNameDto(old.getCity(), old.getRegion(), old.getName(), info.getName())
-	    ));
-	    boolean result = transactionMqRemoteClient.sendMessage(Arrays.asList(message, message2));
+	    boolean result = transactionMqRemoteClient.sendMessage(message);
 	    if (!result) {
 		    throw new RuntimeException("回滚事务");
 	    }

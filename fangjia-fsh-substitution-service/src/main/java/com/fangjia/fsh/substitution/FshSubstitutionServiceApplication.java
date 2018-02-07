@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableHystrix
-@EnableFeignClients(basePackages = "com.fangjia.api.client")
+@EnableFeignClients(basePackages = {"com.fangjia.api.client", "com.fangjia.mqclient"})
 @ComponentScan(basePackages = "com.fangjia")
 public class FshSubstitutionServiceApplication {
 	

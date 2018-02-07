@@ -1,6 +1,5 @@
 package com.fangjia.mqclient;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -43,7 +42,7 @@ public interface TransactionMqRemoteClient {
 	 * @return
 	 */
 	@PostMapping("/incrSendCount")
-	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")Date sendDate);
+	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")String sendDate);
 
 	/**
 	 * 确认消息死亡

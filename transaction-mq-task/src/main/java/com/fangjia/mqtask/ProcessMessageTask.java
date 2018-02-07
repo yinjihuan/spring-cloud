@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -14,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cxytiandi.jdbc.util.DateUtils;
 import com.fangjia.mqclient.TransactionMqRemoteClient;
 import com.fangjia.mqclient.dto.TransactionMessage;
 
@@ -36,14 +36,14 @@ public class ProcessMessageTask {
 	private Semaphore semaphore = new Semaphore(20);
 	
 	public void start() {
-		final RLock lock = redisson.getLock("transaction-mq-task");
 		Thread th = new Thread(new Runnable() {
 			
 			public void run() {
 				while(true) {
+					final RLock lock = redisson.getLock("transaction-mq-task");
 					try {
 						lock.lock();
-						System.out.println("开始发送消息:" + DateUtils.date2Str(new Date()));
+						System.out.println("开始发送消息:" + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 						int sleepTime = process();
 						if (sleepTime > 0) {
 							Thread.sleep(10000);
@@ -109,7 +109,7 @@ public class ProcessMessageTask {
 			producer.send(message.getQueue(), JsonUtils.toJson(messageDto));
 			
 			//修改消息发送次数以及最近发送时间
-			transactionMqRemoteClient.incrSendCount(message.getId(), new Date());
+			transactionMqRemoteClient.incrSendCount(message.getId(), DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 			
 		}
 	}

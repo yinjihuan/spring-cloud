@@ -1,7 +1,10 @@
 package com.fangjia.transaction_mq.controller;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cxytiandi.jdbc.util.DateUtils;
 import com.fangjia.transaction_mq.enums.TransactionMessageStatusEnum;
 import com.fangjia.transaction_mq.po.TransactionMessage;
 import com.fangjia.transaction_mq.query.MessageQuery;
@@ -85,8 +90,17 @@ public class TransactionMessageController {
 	 * @return
 	 */
 	@PostMapping("/incrSendCount")
-	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")Date sendDate) {
-		return transactionMessageService.incrSendCount(messageId, sendDate);
+	public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")String sendDate) {
+		try {
+			if (StringUtils.isBlank(sendDate)) {
+				return transactionMessageService.incrSendCount(messageId, new Date());
+			} else {
+				return transactionMessageService.incrSendCount(messageId, DateUtils.str2Date(sendDate));
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**
