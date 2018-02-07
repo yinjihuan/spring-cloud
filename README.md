@@ -43,6 +43,9 @@
 - fangjia-sjdbc-sharding-table：数据库分表
 - fangjia-zipkin：调用链
 - hystrix：hystrix单独使用
+- transaction-mq-client：可靠消息服务Feign客户端
+- transaction-mq-service：可靠消息服务,提供接口
+- transaction-mq-task：负责发送消息
 
 # 作者
 - 尹吉欢 1304489315@qq.com
