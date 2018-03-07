@@ -50,6 +50,7 @@
 # 作者
 - 尹吉欢 1304489315@qq.com
 - 博客 http://cxytiandi.com/blogs/yinjihuan
+- Spring Cloud技术交流群：626640827
 
 更多技术分享请关注微信公众号：猿天地
 
