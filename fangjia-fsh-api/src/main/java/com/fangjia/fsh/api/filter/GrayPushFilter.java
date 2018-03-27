@@ -4,6 +4,10 @@ import com.fangjia.fsh.api.conf.BasicConf;
 import com.fangjia.common.support.RibbonFilterContextHolder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -36,7 +40,7 @@ public class GrayPushFilter extends ZuulFilter {
     public int filterOrder() {
         return 6;
     }
-
+    private static AtomicInteger ac = new AtomicInteger();
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
@@ -45,7 +49,8 @@ public class GrayPushFilter extends ZuulFilter {
         RibbonFilterContextHolder.getCurrentContext().add("userId", loginUserId);
         // 灰度发布的服务信息
         System.err.println("HHH:"+basicConf.getGrayPushServers());
-        RibbonFilterContextHolder.getCurrentContext().add("servers", basicConf.getGrayPushServers());
+        //RibbonFilterContextHolder.getCurrentContext().add("servers",ac.addAndGet(1)+"");
+        RibbonFilterContextHolder.getCurrentContext().add("servers",basicConf.getGrayPushServers());
         // 灰度发布的用户ID信息
         RibbonFilterContextHolder.getCurrentContext().add("userIds", basicConf.getGrayPushUsers());
         return null;
