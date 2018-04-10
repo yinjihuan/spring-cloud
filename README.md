@@ -6,6 +6,7 @@
 - Spring Cloud Eureka 控制台快速查看Swagger API文档：http://cxytiandi.com/blog/detail/12578
 - Spring Cloud Eureka REST 接口：http://cxytiandi.com/blog/detail/12610
 - Spring Cloud Eureka 服务上下线监控：http://cxytiandi.com/blog/detail/17640
+- Spring Boot2中Spring Security导致Eureka注册失败 ：http://cxytiandi.com/blog/detail/19388
 - Spring Cloud中如何优雅的使用Feign调用接口：http://cxytiandi.com/blog/detail/12189
 - Spring Cloud Feign fallback错误解决：http://cxytiandi.com/blog/detail/12368
 - Spring Cloud Feign 启动UnsatisfiedDependencyException：http://cxytiandi.com/blog/detail/12549
