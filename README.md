@@ -50,6 +50,9 @@
 - transaction-mq-service：可靠消息服务,提供接口
 - transaction-mq-task：负责发送消息
 
+# 注意事项
+最近发现有很多同学问我项目中有一些依赖的jar包在哪里，比如redis cache, swagger等，这些都在我的Github主页中有。
+
 # 作者
 - 尹吉欢 1304489315@qq.com
 - 博客 http://cxytiandi.com/blogs/yinjihuan
