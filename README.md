@@ -6,6 +6,7 @@
 - Spring Cloud Eureka 控制台快速查看Swagger API文档：http://cxytiandi.com/blog/detail/12578
 - Spring Cloud Eureka REST 接口：http://cxytiandi.com/blog/detail/12610
 - Spring Cloud Eureka 服务上下线监控：http://cxytiandi.com/blog/detail/17640
+- Spring Boot2中Spring Security导致Eureka注册失败 ：http://cxytiandi.com/blog/detail/19388
 - Spring Cloud中如何优雅的使用Feign调用接口：http://cxytiandi.com/blog/detail/12189
 - Spring Cloud Feign fallback错误解决：http://cxytiandi.com/blog/detail/12368
 - Spring Cloud Feign 启动UnsatisfiedDependencyException：http://cxytiandi.com/blog/detail/12549
@@ -24,6 +25,7 @@
 - Spring Boot Admin管理监控数据：http://cxytiandi.com/blog/detail/12880
 - Hystrix 配置信息：http://cxytiandi.com/blog/detail/13127
 - Spring Cloud中使用Hystrix 线程隔离导致ThreadLocal数据丢失：http://cxytiandi.com/blog/detail/13331
+- Spring Cloud中Hystrix 线程隔离导致ThreadLocal数据丢失下篇：http://cxytiandi.com/blog/detail/18782
 - Spring Boot Admin监控服务上下线邮件通知：http://cxytiandi.com/blog/detail/13376
 
 
@@ -47,6 +49,9 @@
 - transaction-mq-client：可靠消息服务Feign客户端
 - transaction-mq-service：可靠消息服务,提供接口
 - transaction-mq-task：负责发送消息
+
+# 注意事项
+最近发现有很多同学问我项目中有一些依赖的jar包在哪里，比如redis cache, swagger等，这些都在我的Github主页中有。
 
 # 作者
 - 尹吉欢 1304489315@qq.com
