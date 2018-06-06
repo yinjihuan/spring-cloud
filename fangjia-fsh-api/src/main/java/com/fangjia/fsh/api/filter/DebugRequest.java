@@ -6,6 +6,10 @@ import com.netflix.zuul.context.RequestContext;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -24,28 +28,28 @@ public class DebugRequest extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 10000;
+        return 1;
     }
 
     @Override
     public boolean shouldFilter() {
-        return Debug.debugRequest();
+        return true;
     }
 
     @Override
     public Object run() {
-        HttpServletRequest req = (HttpServletRequest)RequestContext.getCurrentContext();
+        HttpServletRequest req = (HttpServletRequest)RequestContext.getCurrentContext().getRequest();
+        System.err.println("REQUEST:: " + req.getScheme() + " " + req.getRemoteAddr() + ":" + req.getRemotePort());
+        System.err.println("REQUEST:: " + req.getScheme() + " " + req.getRemoteAddr() + ":" + req.getRemotePort());
 
-        Debug.addRequestDebug("REQUEST:: " + req.getScheme() + " " + req.getRemoteAddr() + ":" + req.getRemotePort());
-
-        Debug.addRequestDebug("REQUEST:: > " + req.getMethod() + " " + req.getRequestURI() + " " + req.getProtocol());
+        System.err.println("REQUEST:: > " + req.getMethod() + " " + req.getRequestURI() + " " + req.getProtocol());
 
         Enumeration<String> headers = req.getHeaderNames();
 
         while (headers.hasMoreElements()) {
             String name = (String) headers.nextElement();
             String value = req.getHeader(name);
-            Debug.addRequestDebug("REQUEST:: > " + name + ":" + value);
+            System.err.println("REQUEST:: > " + name + ":" + value);
         }
 
         final RequestContext ctx = RequestContext.getCurrentContext();
@@ -55,8 +59,8 @@ public class DebugRequest extends ZuulFilter {
                 inp = ctx.getRequest().getInputStream();
                 String body = null;
                 if (inp != null) {
-
-                    Debug.addRequestDebug("REQUEST:: > " + body);
+                	body = IOUtils.toString(inp);
+                	System.err.println("REQUEST:: > " + body);
 
                 }
             } catch (IOException e) {
