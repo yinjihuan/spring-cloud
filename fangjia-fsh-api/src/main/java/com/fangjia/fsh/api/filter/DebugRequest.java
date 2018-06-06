@@ -41,8 +41,22 @@ public class DebugRequest extends ZuulFilter {
         HttpServletRequest req = (HttpServletRequest)RequestContext.getCurrentContext().getRequest();
         System.err.println("REQUEST:: " + req.getScheme() + " " + req.getRemoteAddr() + ":" + req.getRemotePort());
         System.err.println("REQUEST:: " + req.getScheme() + " " + req.getRemoteAddr() + ":" + req.getRemotePort());
-
-        System.err.println("REQUEST:: > " + req.getMethod() + " " + req.getRequestURI() + " " + req.getProtocol());
+        StringBuilder params = new StringBuilder("?");
+        Enumeration<String> names = req.getParameterNames();
+        if( req.getMethod().equals("GET") ) {
+    	   while (names.hasMoreElements()) {
+	   		  String name = (String) names.nextElement();
+	   		  params.append(name);
+	   		  params.append("=");
+	   		  params.append(req.getParameter(name));
+	   		  params.append("&");
+   		   }
+        }
+       
+        if (params.length() > 0) {
+        	params.delete(params.length()-1, params.length());
+        }
+        System.err.println("REQUEST:: > " + req.getMethod() + " " + req.getRequestURI() + params + " " + req.getProtocol());
 
         Enumeration<String> headers = req.getHeaderNames();
 
