@@ -1,0 +1,11 @@
+server:
+  port: 8084
+spring:
+  cloud:
+    gateway:
+      #enabled: false
+      routes:
+      - id: path_route
+        uri: http://cxytiandi.com
+        predicates:
+        - Path=/course
