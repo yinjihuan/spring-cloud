@@ -43,7 +43,7 @@ public class FilterConfig {
         return new AuthFilter();
     }
 
-    //@Bean
+    @Bean
     public DebugRequest debugRequest() {
         return new DebugRequest();
     }

@@ -103,6 +103,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
+        
+        <dependency>
+        	<groupId>com.fangjia</groupId>
+        	<artifactId>transaction-mq-client</artifactId>
+        	<version>1.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

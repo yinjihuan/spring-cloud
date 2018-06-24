@@ -43,7 +43,7 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
             String curUserId = RibbonFilterContextHolder.getCurrentContext().get("userId");
             String userIds = RibbonFilterContextHolder.getCurrentContext().get("userIds");
             String servers = RibbonFilterContextHolder.getCurrentContext().get("servers");
-            System.out.println("servers:"+servers);
+            System.out.println(Thread.currentThread().getName()+":"+servers);
             List<String> grayServers = Arrays.asList(servers.split(","));
             if (StringUtils.isNotBlank(userIds) && StringUtils.isNotBlank(curUserId)) {
                 String[] uids = userIds.split(",");
