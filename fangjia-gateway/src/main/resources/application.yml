@@ -4,8 +4,27 @@ spring:
   cloud:
     gateway:
       #enabled: false
+      discovery:
+        locator: 
+          enabled: true
+          lowerCaseServiceId: true
       routes:
       - id: path_route
         uri: http://cxytiandi.com
         predicates:
         - Path=/course
+      #- id: fsh-house
+        #uri: lb://fsh-house
+        #predicates:
+        #- Path=/house/**
+        
+  application:
+    name: fangjia-gateway
+    
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    #enabled: false
+    service-url:
+      defaultZone: http://yinjihuan:123456@master:8761/eureka/
