@@ -19,6 +19,7 @@
 - Spring Cloud Ribbon 重试机制：http://cxytiandi.com/blog/detail/12507
 - Spring Cloud Zuul结合Smconf配置中心动态进行IP黑名单限制：http://cxytiandi.com/blog/detail/12508
 - Spring Cloud Zuul Filter 使用小经验：http://cxytiandi.com/blog/detail/12632
+- Spring Cloud Zuul过滤器获取请求参数问题:http://cxytiandi.com/blog/detail/20343
 - Spring Cloud如何提供API给客户端:http://cxytiandi.com/blog/detail/14458
 - Spring Cloud Sleuth 链路追踪：http://cxytiandi.com/blog/detail/12804
 - Spring Cloud Sleuth Zipkin 展示追踪数据：http://cxytiandi.com/blog/detail/12828
@@ -28,7 +29,7 @@
 - Spring Cloud中使用Hystrix 线程隔离导致ThreadLocal数据丢失：http://cxytiandi.com/blog/detail/13331
 - Spring Cloud中Hystrix 线程隔离导致ThreadLocal数据丢失下篇：http://cxytiandi.com/blog/detail/18782
 - Spring Boot Admin监控服务上下线邮件通知：http://cxytiandi.com/blog/detail/13376
-
+- Spring Cloud Gateway 网关尝鲜:http://cxytiandi.com/blog/detail/20430
 
 # 项目代码工程目录讲解
 - fangjia-api-client：Feign客户端，所有调用的API定义在里面，相当于API的SDK
