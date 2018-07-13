@@ -23,7 +23,7 @@ public class LimitFilter extends ZuulFilter {
     private Logger log = LoggerFactory.getLogger(LimitFilter.class);
 
     public static volatile RateLimiter rateLimiter =
-            RateLimiter.create(Double.parseDouble(System.getProperty("api.limitRate")));
+            RateLimiter.create(Double.parseDouble(System.getProperty("api.limitRate", "100")));
 
     @Autowired
     @Qualifier("longRedisTemplate")
