@@ -54,6 +54,7 @@
 
 # 注意事项
 最近发现有很多同学问我项目中有一些依赖的jar包在哪里，比如redis cache, swagger等，这些都在我的Github主页中有。
+查看 http://cxytiandi.com/blog/detail/20517 看看怎么启动整个项目。
 
 # 作者
 - 尹吉欢 1304489315@qq.com
