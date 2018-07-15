@@ -1,22 +1,22 @@
 server:
   port: 8084
 spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
   cloud:
     gateway:
-      #enabled: false
-      discovery:
-        locator: 
-          enabled: true
-          lowerCaseServiceId: true
       routes:
-      - id: path_route
-        uri: http://cxytiandi.com
+      - id: fsh-house
+        uri: lb://fsh-house
         predicates:
-        - Path=/course
-      #- id: fsh-house
-        #uri: lb://fsh-house
-        #predicates:
-        #- Path=/house/**
+        - Path=/house/**
+        filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 10
+            redis-rate-limiter.burstCapacity: 20
+            key-resolver: "#{@ipKeyResolver}"
         
   application:
     name: fangjia-gateway
@@ -25,6 +25,5 @@ eureka:
   instance:
     prefer-ip-address: true
   client:
-    #enabled: false
     service-url:
       defaultZone: http://yinjihuan:123456@master:8761/eureka/
