@@ -30,6 +30,7 @@
 - Spring Cloud中Hystrix 线程隔离导致ThreadLocal数据丢失下篇：http://cxytiandi.com/blog/detail/18782
 - Spring Boot Admin监控服务上下线邮件通知：http://cxytiandi.com/blog/detail/13376
 - Spring Cloud Gateway 网关尝鲜:http://cxytiandi.com/blog/detail/20430
+- Spring Cloud Gateway 整合Eureka路由转发:http://cxytiandi.com/blog/detail/20518
 
 # 项目代码工程目录讲解
 - fangjia-api-client：Feign客户端，所有调用的API定义在里面，相当于API的SDK
