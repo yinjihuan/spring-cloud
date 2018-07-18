@@ -1,3 +1,6 @@
+购买地址请扫下面的二维码：
+![微信图片_20180718162816.jpg](https://upload-images.jianshu.io/upload_images/2685774-f90aa78fb276a2f5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 # spring-cloud 文章对应源码
 
 - Spring Cloud Eureka 初探：http://cxytiandi.com/blog/detail/11988
