@@ -2,8 +2,12 @@ package com.cxytiandi.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+
+import reactor.core.publisher.Mono;
 /**
  * 网关启动入口
  * 
@@ -26,4 +30,16 @@ public class GatewayApplication {
 	            .build();
 	}
 	
+	@Bean
+	public KeyResolver ipKeyResolver() {
+		return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName());
+	}
+	
+//	@Bean
+//	KeyResolver ipKeyResolver() {
+//	    //return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("userId"));
+//		return exchange -> Mono.just("cxytiandi");
+//		//return exchange -> Mono.just(exchange.getRequest().getPath().value());
+//	    
+//	}
 }

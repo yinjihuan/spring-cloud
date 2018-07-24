@@ -1,3 +1,6 @@
+
+本书完整目录请查看：http://cxytiandi.com/blog/detail/20520
+
 # spring-cloud 文章对应源码
 
 - Spring Cloud Eureka 初探：http://cxytiandi.com/blog/detail/11988
@@ -30,6 +33,7 @@
 - Spring Cloud中Hystrix 线程隔离导致ThreadLocal数据丢失下篇：http://cxytiandi.com/blog/detail/18782
 - Spring Boot Admin监控服务上下线邮件通知：http://cxytiandi.com/blog/detail/13376
 - Spring Cloud Gateway 网关尝鲜:http://cxytiandi.com/blog/detail/20430
+- Spring Cloud Gateway 整合Eureka路由转发:http://cxytiandi.com/blog/detail/20518
 
 # 项目代码工程目录讲解
 - fangjia-api-client：Feign客户端，所有调用的API定义在里面，相当于API的SDK
@@ -54,6 +58,7 @@
 
 # 注意事项
 最近发现有很多同学问我项目中有一些依赖的jar包在哪里，比如redis cache, swagger等，这些都在我的Github主页中有。
+查看 http://cxytiandi.com/blog/detail/20517 看看怎么启动整个项目。
 
 # 作者
 - 尹吉欢 1304489315@qq.com
