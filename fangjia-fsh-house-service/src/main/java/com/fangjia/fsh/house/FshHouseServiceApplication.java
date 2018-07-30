@@ -2,6 +2,8 @@ package com.fangjia.fsh.house;
 
 import com.fangjia.common.base.StartCommand;
 import com.fangjia.common.listenter.InitApiLimitRateListener;
+import com.fangjia.fsh.house.listener.InitGatewayApiLimitRateListener;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -27,9 +29,10 @@ public class FshHouseServiceApplication {
         // 启动参数设置，比如自动生成端口
         //new StartCommand(args);
         // 启动时初始化配置信息
-       // System.setProperty("smconf.conf.package", "com.fangjia.fsh.house.conf");
+    	System.setProperty("smconf.conf.package", "com.fangjia.fsh.house.conf");
         SpringApplication application = new SpringApplication(FshHouseServiceApplication.class);
         //application.addListeners(new InitApiLimitRateListener("com.fangjia.fsh.house.controller"));
+        application.addListeners(new InitGatewayApiLimitRateListener("com.fangjia.fsh.house.controller"));
         context = application.run(args);
     }
 }

@@ -62,6 +62,7 @@ public class HouseController {
 		return "Hello"+serverPort;
 	}
 
+	@ApiRateLimit(replenishRate=10, burstCapacity=100)
 	@GetMapping("/data")
 	public HouseInfo getData(@RequestParam("name") String name) {
 		return new HouseInfo(1L, "上海", "虹口", "东体小区");
