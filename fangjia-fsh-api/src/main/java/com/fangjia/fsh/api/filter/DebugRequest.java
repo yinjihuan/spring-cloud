@@ -1,20 +1,20 @@
 package com.fangjia.fsh.api.filter;
 
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.Debug;
-import com.netflix.zuul.context.RequestContext;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.Enumeration;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.cloud.netflix.ribbon.RibbonHttpResponse;
+import org.springframework.util.StreamUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 
 /**
  * @author yinjihuan
@@ -23,7 +23,7 @@ import java.util.List;
 public class DebugRequest extends ZuulFilter {
     @Override
     public String filterType() {
-        return "pre";
+        return "post";
     }
 
     @Override
@@ -82,6 +82,29 @@ public class DebugRequest extends ZuulFilter {
             }
 
         }
+        // 第一种，获取响应结果
+        try {
+        	Object zuulResponse = RequestContext.getCurrentContext().get("zuulResponse");
+        	if (zuulResponse != null) {
+        		RibbonHttpResponse resp = (RibbonHttpResponse) zuulResponse;
+    			String body = IOUtils.toString(resp.getBody());
+    			System.err.println(body);
+    			resp.close();
+    			RequestContext.getCurrentContext().setResponseBody(body);
+        	}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+        // 第二种，获取响应结果
+       /* InputStream stream = RequestContext.getCurrentContext().getResponseDataStream();
+		try {
+			String body = IOUtils.toString(stream);
+			System.err.println(body);
+			RequestContext.getCurrentContext().setResponseBody(body);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
         return null;
     }
 

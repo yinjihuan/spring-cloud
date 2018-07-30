@@ -44,18 +44,20 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
             String userIds = RibbonFilterContextHolder.getCurrentContext().get("userIds");
             String servers = RibbonFilterContextHolder.getCurrentContext().get("servers");
             System.out.println(Thread.currentThread().getName()+":"+servers);
-            List<String> grayServers = Arrays.asList(servers.split(","));
-            if (StringUtils.isNotBlank(userIds) && StringUtils.isNotBlank(curUserId)) {
-                String[] uids = userIds.split(",");
-                if (Arrays.asList(uids).contains(curUserId)) {
-                    List<Server> allServers = lb.getAllServers();
-                    for (Server server : allServers) {
-                        if (grayServers.contains(server.getHostPort())) {
-                            return server;
-                        }
-                    }
-                }
-            }
+            if (StringUtils.isNotBlank(servers)) {
+            	 List<String> grayServers = Arrays.asList(servers.split(","));
+                 if (StringUtils.isNotBlank(userIds) && StringUtils.isNotBlank(curUserId)) {
+                     String[] uids = userIds.split(",");
+                     if (Arrays.asList(uids).contains(curUserId)) {
+                         List<Server> allServers = lb.getAllServers();
+                         for (Server server : allServers) {
+                             if (grayServers.contains(server.getHostPort())) {
+                                 return server;
+                             }
+                         }
+                     }
+                 }
+			}
 
             Server server = null;
             int count = 0;
@@ -65,8 +67,10 @@ public class GrayPushRule extends AbstractLoadBalancerRule {
                     List<Server> reachableServers = lb.getReachableServers();
                     List<Server> allServers = lb.getAllServers();
                     // 移除已经设置为灰度发布的服务信息
-                    reachableServers = removeServer(reachableServers, servers);
-                    allServers = removeServer(allServers, servers);
+                    if (StringUtils.isNotBlank(servers)) {
+                    	 reachableServers = removeServer(reachableServers, servers);
+                         allServers = removeServer(allServers, servers);
+                    }
                     int upCount = reachableServers.size();
                     int serverCount = allServers.size();
                     if (upCount != 0 && serverCount != 0) {

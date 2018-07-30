@@ -38,12 +38,16 @@ public class ApiLimitAspect {
 			semap = semaphoreMap.get("open.api.defaultLimit");
 		}
 		try {
-			semap.acquire();
+			if (semap != null) {
+				semap.acquire();
+			}
 			result = joinPoint.proceed();
 		} catch (Throwable e) {
 			throw new RuntimeException(e);
 		} finally {
-			semap.release();
+			if (semap != null) {
+				semap.release();
+			}
 		}
 		return result;
 	}
