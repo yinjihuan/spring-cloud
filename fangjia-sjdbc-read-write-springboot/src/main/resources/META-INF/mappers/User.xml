@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fangjia.sjdbc.repository.UserRepository">
+    
+    <resultMap id="baseResultMap" type="com.fangjia.sjdbc.po.User">
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <insert id="addUser">
+        INSERT INTO user (
+          id, city, name
+        )
+        VALUES (
+        #{id,jdbcType=INTEGER},
+        #{city,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR}
+        )
+    </insert>
+   
+    <select id="list" resultMap="baseResultMap">
+        SELECT u.* FROM user u
+    </select>
+
+</mapper>
