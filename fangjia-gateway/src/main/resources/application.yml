@@ -10,6 +10,8 @@ spring:
         predicates:
         - Path=/house/**
         filters:
+        - AddRequestHeader=NAME, yinjihuan
+        - AddRequestHeader=NAME2, yinjihuan2
         - name: RequestRateLimiter
           args:
             redis-rate-limiter.replenishRate: 10
