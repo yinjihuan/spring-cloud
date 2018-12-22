@@ -1,0 +1,30 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+      - id: path_route
+        uri: http://cxytiandi.com
+        predicates:
+        - Path=/course
+      - id: path_route2
+        uri: http://cxytiandi.com
+        predicates:
+        - Path=/blog/**
+      - id: user-service
+        uri: lb://user-service
+        predicates:
+        - Path=/user-service/**
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://yinjihuan:123456@localhost:8761/eureka/
