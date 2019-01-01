@@ -23,7 +23,6 @@ public class MyLoadBalancerInterceptor implements ClientHttpRequestInterceptor {
 	}
 
 	public MyLoadBalancerInterceptor(LoadBalancerClient loadBalancer) {
-		// for backwards compatibility
 		this(loadBalancer, new LoadBalancerRequestFactory(loadBalancer));
 	}
 

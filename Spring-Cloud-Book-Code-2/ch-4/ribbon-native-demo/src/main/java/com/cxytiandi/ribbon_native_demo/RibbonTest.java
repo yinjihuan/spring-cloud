@@ -30,17 +30,16 @@ public class RibbonTest {
 					.submit(new ServerOperation<String>() {
 						public Observable<String> call(Server server) {
 							try {
-								String addr = "http://" + server.getHost() + ":" + server.getPort() + "/house/hello";
+								String addr = "http://" + server.getHost() + ":" + server.getPort() + "/user/hello";
 								System.out.println("调用地址：" + addr);
-								/*URL url = new URL(addr);
+								URL url = new URL(addr);
 								HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 								conn.setRequestMethod("GET");
 								conn.connect();
 								InputStream in = conn.getInputStream();
 								byte[] data = new byte[in.available()];
 								in.read(data);
-								return Observable.just(new String(data));*/
-								return Observable.just("");
+								return Observable.just(new String(data));
 							} catch (Exception e) {
 								return Observable.error(e);
 							}
