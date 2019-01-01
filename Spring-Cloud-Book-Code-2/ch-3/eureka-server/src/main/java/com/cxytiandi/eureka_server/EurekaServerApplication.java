@@ -21,10 +21,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @EnableEurekaServer
 @SpringBootApplication
-public class App {
+public class EurekaServerApplication {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
+		SpringApplication.run(EurekaServerApplication.class, args);
 	}
 	
 	@Configuration

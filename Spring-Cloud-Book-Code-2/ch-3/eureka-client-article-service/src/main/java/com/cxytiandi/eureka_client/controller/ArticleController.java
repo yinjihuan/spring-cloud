@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.discovery.EurekaClient;
+
 @RestController
 public class ArticleController {
 
@@ -15,9 +17,13 @@ public class ArticleController {
 	@Autowired     
 	private DiscoveryClient discoveryClient;     
 
+	@Autowired
+	private EurekaClient eurekaClient;
+	
 	@GetMapping("/article/infos")     
-	public Object serviceUrl() {                
-		return discoveryClient.getInstances("eureka-client-user-service");     
+	public Object serviceUrl() {     
+		return eurekaClient.getInstancesByVipAddress("eureka-client-user-service", false);
+		//return discoveryClient.getInstances("eureka-client-user-service");     
 	}
 
 	@GetMapping("/article/callHello") 	
