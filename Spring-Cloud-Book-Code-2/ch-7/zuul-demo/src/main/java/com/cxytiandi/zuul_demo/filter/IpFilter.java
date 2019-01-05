@@ -37,7 +37,7 @@ public class IpFilter extends ZuulFilter {
 
 	@Override
 	public Object run() {
-		System.err.println(2/0);
+		//System.err.println(2/0);
 		RequestContext ctx = RequestContext.getCurrentContext();
 		String ip = IpUtils.getIpAddr(ctx.getRequest());
 		// 在黑名单中禁用

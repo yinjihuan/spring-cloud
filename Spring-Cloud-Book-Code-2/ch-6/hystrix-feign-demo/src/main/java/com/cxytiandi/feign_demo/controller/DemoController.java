@@ -14,6 +14,8 @@ public class DemoController {
 
 	@GetMapping("/callHello")
 	public String callHello() {
+		System.err.println("进来了。。。。。");
+		//System.err.println(2/0);
 		String result = userRemoteClient.hello();
 		System.out.println(" 调用结果：" + result);
 		return result;
