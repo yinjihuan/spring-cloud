@@ -13,8 +13,8 @@ import com.netflix.zuul.context.RequestContext;
 
 public class IpFilter extends ZuulFilter {
 
-	// IP白名单列表
-	private List<String> whiteIpList = Arrays.asList("localhost", "127.0.0.1");
+	// IP黑名单列表
+	private List<String> blackIpList = Arrays.asList("127.0.0.1");
 
 	public IpFilter() {
 		super();
@@ -41,7 +41,7 @@ public class IpFilter extends ZuulFilter {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		String ip = IpUtils.getIpAddr(ctx.getRequest());
 		// 在黑名单中禁用
-		if (StringUtils.isNotBlank(ip) && !whiteIpList.contains(ip)) {
+		if (StringUtils.isNotBlank(ip) && blackIpList.contains(ip)) {
 			ctx.setSendZuulResponse(false);
 			ctx.set("sendForwardFilter.ran", true);
 			ResponseData data = ResponseData.fail("非法请求", ResponseCode.NO_AUTH_CODE.getCode());
