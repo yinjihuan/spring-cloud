@@ -5,6 +5,16 @@ spring:
     name: spring-cloud-gateway
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "192.168.10.32"
+            allowedMethods:
+            - GET
+            - OPTIONS
+            - PUT
+            - DELETE
+            - POST
       discovery:
         locator:
           enabled: true
