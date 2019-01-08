@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Spring Cloud Gateway
+ * Spring Cloud Gateway示例
  * 
  * @author yinjihuan
  * 
