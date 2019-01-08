@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "spring.user.name",
+      "defaultValue": "cxytinadi"
+    },
+    {
+      "name": "spring.user.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false
+    }
+  ]
+}
