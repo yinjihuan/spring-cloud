@@ -3,6 +3,7 @@ package com.cxytiandi.eureka_client;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @date 2018-12-22
  * 
  */
+@EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 public class App {

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.cxytiandi.auth.common.ResponseCode;
@@ -22,6 +23,7 @@ import com.netflix.zuul.context.RequestContext;
  * @author yinjihuan
  * 
  **/
+@Component
 public class AuthFilter extends ZuulFilter {
 
     @Autowired
@@ -92,6 +94,7 @@ public class AuthFilter extends ZuulFilter {
             ctx.getResponse().setContentType("application/json; charset=utf-8");
             return null;
         }
+        System.err.println("用戶ID"+jwt.getUid());
         ctx.addZuulRequestHeader("uid", jwt.getUid());
         return null;
     }

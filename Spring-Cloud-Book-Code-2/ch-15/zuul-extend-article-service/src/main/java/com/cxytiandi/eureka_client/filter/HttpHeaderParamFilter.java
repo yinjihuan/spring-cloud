@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cxytiandi.eureka_client.support.RibbonFilterContextHolder;
-
+/**
+ * 接收Zuul过来的用户信息
+ * 
+ * @author yinjihuan
+ *
+ */
 public class HttpHeaderParamFilter implements Filter {
 	
 	@Override
