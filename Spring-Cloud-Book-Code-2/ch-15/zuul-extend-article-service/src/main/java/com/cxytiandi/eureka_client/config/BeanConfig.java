@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.cxytiandi.eureka_client.apilimit.ApiLimitAspect;
 import com.cxytiandi.eureka_client.feign.FeignBasicAuthRequestInterceptor;
 import com.cxytiandi.eureka_client.filter.HttpHeaderParamFilter;
 
@@ -27,5 +28,10 @@ public class BeanConfig {
 	@Bean
 	public FeignBasicAuthRequestInterceptor basicAuthRequestInterceptor() {
 		return new FeignBasicAuthRequestInterceptor();
+	}
+	
+	@Bean
+	public ApiLimitAspect apiLimitAspect() {
+		return new ApiLimitAspect();
 	}
 }

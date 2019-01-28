@@ -21,6 +21,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 public class App {
 	public static void main(String[] args) {
+		// 指定环境（开发演示用，不能用于生产环境））
+		System.setProperty("env", "DEV");
 		SpringApplication.run(App.class, args);
 	}
 }
