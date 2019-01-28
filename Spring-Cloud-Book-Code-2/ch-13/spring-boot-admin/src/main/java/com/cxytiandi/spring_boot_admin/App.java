@@ -1,14 +1,20 @@
 package com.cxytiandi.spring_boot_admin;
 
+import java.time.Duration;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
+import de.codecentric.boot.admin.server.domain.entities.InstanceRepository;
+import de.codecentric.boot.admin.server.notify.RemindingNotifier;
 
 /**
  * Spring Boot Admin Web端示列
@@ -52,5 +58,19 @@ public class App {
 					.and().httpBasic()
 					.and().csrf().disable();
 		}
+	}
+	
+	@Bean
+	public DingDingNotifier dingDingNotifier(InstanceRepository repository) {
+		return new DingDingNotifier(repository);
+	}
+	
+	@Primary
+	@Bean(initMethod = "start", destroyMethod = "stop")
+	public RemindingNotifier remindingNotifier(InstanceRepository repository) {
+		RemindingNotifier notifier = new RemindingNotifier(dingDingNotifier(repository), repository);
+		notifier.setReminderPeriod(Duration.ofSeconds(10));
+		notifier.setCheckReminderInverval(Duration.ofSeconds(10));
+		return notifier;
 	}
 }

@@ -13,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -22,7 +23,7 @@ public class UserController {
 
 	@ApiOperation(value = "查询用户")
 	@ApiImplicitParams({
-		  @ApiImplicitParam(name="id",value="用户ID",dataType="string", paramType = "query")
+		  @ApiImplicitParam(name="id",value="用户ID",dataType="string", paramType = "query", required=true, defaultValue="1")
 	})
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserDto.class) })
 	@GetMapping("/user")
@@ -30,10 +31,10 @@ public class UserController {
 		return new UserDto();
 	}
 	
-	@ApiOperation(value = "新增用户")
+	@ApiOperation(value = "新增用户", notes="详细描述")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserDto.class) })
 	@PostMapping("/user")
-	public UserDto addUser(@RequestBody AddUserParam param) {
+	public UserDto addUser(@ApiParam(value = " 新增用户参数 ", required = true) @RequestBody AddUserParam param) {
 		System.err.println(param.getName());
 		return new UserDto();
 	}
