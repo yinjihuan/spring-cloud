@@ -23,6 +23,9 @@ public class BasicConf {
 	@Value("${limitRate:10}")
 	private double limitRate;
 	
+	@Value("${downGradeServiceStr:default}")
+	private String downGradeServiceStr;
+
 	@ApolloConfig
 	private Config config;
 	
