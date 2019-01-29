@@ -17,7 +17,7 @@ import lombok.Data;
 public class BasicConf {
 	
 	// API接口白名单，多个用逗号分隔
-	@Value("${apiWhiteStr:/user/login}")
+	@Value("${apiWhiteStr:/zuul-extend-user-service/user/login}")
 	private String apiWhiteStr;
 
 	@Value("${limitRate:10}")
@@ -26,6 +26,12 @@ public class BasicConf {
 	@Value("${downGradeServiceStr:default}")
 	private String downGradeServiceStr;
 
+	@Value("${grayPushServers:default}")
+	private String grayPushServers;
+
+	@Value("${grayPushUsers:default}")
+	private String grayPushUsers;
+	
 	@ApolloConfig
 	private Config config;
 	
