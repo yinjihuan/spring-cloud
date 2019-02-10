@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cxytiandi.mongodb.po.Article;
+import com.cxytiandi.mongodb.repository.ArticleRepositor;
 import com.mongodb.client.ListIndexesIterable;
 
 @RestController
@@ -24,6 +25,9 @@ public class ArticleController {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
+	@Autowired
+	private ArticleRepositor articleRepositor;
+	
 	@GetMapping("/save")
 	public String save() {
 		// 循环添加
@@ -163,5 +167,10 @@ public class ArticleController {
 		query = Query.query(Criteria.where("").orOperator( Criteria.where("author").is("jason"), Criteria.where("visitCount").is(0)));
 		articles = mongoTemplate.find(query, Article.class);
 		return "success";
+	}
+	
+	@GetMapping("/findAll")
+	public Object findAll() {
+		return articleRepositor.findByAuthor("yinjihuan");
 	}
 }

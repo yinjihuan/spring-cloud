@@ -41,7 +41,6 @@ public class InitApiLimitRateListener implements ApplicationContextAware {
 			Method[] methods = clz.getMethods();
 			for (Method method : methods) {
 				if (method.isAnnotationPresent(ApiRateLimit.class)) {
-					System.err.println("xxxx");
 					String confKey = method.getAnnotation(ApiRateLimit.class).confKey();
 					if (environment.getProperty(confKey) != null) {
 						int limit = Integer.parseInt(environment.getProperty(confKey));

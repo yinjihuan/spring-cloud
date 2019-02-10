@@ -23,6 +23,9 @@ public class BasicConf {
 	@Value("${limitRate:10}")
 	private double limitRate;
 	
+	@Value("${api.clusterLimitRate:100}")
+	private int clusterLimitRate;
+	 
 	@Value("${downGradeServiceStr:default}")
 	private String downGradeServiceStr;
 

@@ -1,18 +1,20 @@
 package com.cxytiandi.zuul_demo.filter;
 
-import com.cxytiandi.auth.common.ResponseCode;
-import com.cxytiandi.auth.common.ResponseData;
-import com.cxytiandi.auth.util.JsonUtils;
-import com.google.common.util.concurrent.RateLimiter;
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
+import java.util.concurrent.TimeUnit;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
-import java.util.concurrent.TimeUnit;
+
+import com.cxytiandi.auth.common.ResponseCode;
+import com.cxytiandi.auth.common.ResponseData;
+import com.cxytiandi.auth.util.JsonUtils;
+import com.cxytiandi.zuul_demo.config.BasicConf;
+import com.google.common.util.concurrent.RateLimiter;
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 
 /**
  * 总体限流过滤器
@@ -23,16 +25,15 @@ import java.util.concurrent.TimeUnit;
 public class LimitFilter extends ZuulFilter {
     private Logger log = LoggerFactory.getLogger(LimitFilter.class);
 
-    @Value("${api.clusterLimitRate:100}")
-    private int clusterLimitRate;
-    
-    public static volatile RateLimiter rateLimiter =
-            RateLimiter.create(Double.parseDouble(System.getProperty("api.limitRate", "100")));
+    public static volatile RateLimiter rateLimiter = RateLimiter.create(100);
     
     @Autowired
     @Qualifier("longRedisTemplate")
     private RedisTemplate<String, Long> redisTemplate;
 
+    @Autowired
+    private BasicConf basicConf;
+    
     public LimitFilter() {
         super();
     }
@@ -63,7 +64,7 @@ public class LimitFilter extends ZuulFilter {
             }
 
             // 当集群中当前秒的并发量达到了设定的值，不进行处理，注意集群中的网关所在服务器时间必须同步
-            if (redisTemplate.opsForValue().increment(key, 1) > clusterLimitRate) {
+            if (redisTemplate.opsForValue().increment(key, 1) > basicConf.getClusterLimitRate()) {
                 ctx.setSendZuulResponse(false);
                 ctx.set("isSuccess", false);
                 ResponseData data = ResponseData.fail("当前负载太高，请稍后重试", ResponseCode.LIMIT_ERROR_CODE.getCode());
