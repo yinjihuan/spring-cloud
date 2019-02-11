@@ -15,6 +15,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cxytiandi.mongodb.batchupdate.BathUpdateOptions;
+import com.cxytiandi.mongodb.batchupdate.MongoBaseDao;
 import com.cxytiandi.mongodb.po.Article;
 import com.cxytiandi.mongodb.repository.ArticleRepositor;
 import com.mongodb.client.ListIndexesIterable;
@@ -172,5 +174,15 @@ public class ArticleController {
 	@GetMapping("/findAll")
 	public Object findAll() {
 		return articleRepositor.findByAuthor("yinjihuan");
+	}
+	
+	@GetMapping("/batchUpdate")
+	public Object batchUpdate() {
+		List<BathUpdateOptions> list = new ArrayList<BathUpdateOptions>();
+		list.add(new BathUpdateOptions(Query.query(Criteria.where("author").is("yinjihuan")),Update.update("title", "批量更新"), true, true));
+		list.add(new BathUpdateOptions(Query.query(Criteria.where("author").is("jason")),Update.update("title", "批量更新"), true, true));
+		int n = MongoBaseDao.bathUpdate(mongoTemplate, "article_info", list, true);
+		System.out.println("受影响的行数："+n);
+		return n;
 	}
 }

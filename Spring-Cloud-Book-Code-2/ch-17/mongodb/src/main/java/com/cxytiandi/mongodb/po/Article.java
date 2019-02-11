@@ -7,13 +7,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.cxytiandi.mongodb.autoid.GeneratedValue;
+
 import lombok.Data;
 
 @Data
 @Document(collection = "article_info")
 public class Article {
 	@Id
-	private String id;
+	@GeneratedValue
+	private Long id;
 
 	@Field("title")
 	private String title;
