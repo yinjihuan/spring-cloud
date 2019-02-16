@@ -18,7 +18,7 @@ public class Article {
 	@Field(type = FieldType.Keyword)   
 	private String sid;
 	
-	@Field(type = FieldType.Keyword, analyzer = "ik_max_word", searchAnalyzer = "ik_max_word") 
+	@Field(type = FieldType.Keyword,  analyzer = "ik_max_word", searchAnalyzer = "ik_max_word") 
 	private String title;
 	
 	@Field(type = FieldType.Keyword) 
