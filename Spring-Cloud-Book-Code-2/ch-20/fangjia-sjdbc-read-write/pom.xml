@@ -29,9 +29,9 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.cxytiandi</groupId>
-			<artifactId>cxytiandi-jdbc</artifactId>
-			<version>1.0.2</version>
+		  <groupId>com.github.yinjihuan</groupId>
+		  <artifactId>smjdbctemplate</artifactId>
+		  <version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -49,4 +49,10 @@
 			<version>1.5.4.1</version>
 		</dependency>
 	</dependencies>
+	<repositories>
+	  <repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	  </repository>
+	</repositories>
 </project>
