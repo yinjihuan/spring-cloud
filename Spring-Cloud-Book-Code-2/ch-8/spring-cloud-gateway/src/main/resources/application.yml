@@ -28,6 +28,29 @@ spring:
           enabled: true
           lowerCaseServiceId: true
       routes:
+#      - id: customer_route
+#        uri: http://cxytiandi.com
+#        predicates:
+#        - name: CheckAuth
+#          args:
+#            name: yinjihuan
+      - id: host_route
+        uri: http://cxytiandi.com
+        predicates:
+        - Path=/blog/detail/{segment}
+        filters:
+         - CheckAuth=yinjihuan,男
+         - name: CheckAuth2
+           args:
+             name: 尹吉欢
+      - id: query_route
+        uri: http://cxytiandi.com
+        predicates:
+        - Query=foo, ba.
+      - id: header_route
+        uri: http://example.org
+        predicates:
+        - Header=X-Request-Id, \d+
       - id: path_route
         uri: http://cxytiandi.com
         predicates:
@@ -36,6 +59,15 @@ spring:
         uri: http://cxytiandi.com
         predicates:
         - Path=/blog/**
+      - id: zuul-encrypt-service
+        uri: lb://zuul-encrypt-service
+        predicates:
+        - Path=/data/**
+        filters:
+        - name: Retry
+          args:
+            retries: 3
+            series: SERVER_ERROR
       - id: user-service
         uri: lb://user-service
         predicates:
@@ -50,6 +82,8 @@ spring:
           args:
             name: fallbackcmd
             fallbackUri: forward:/fallback
+     
+            
 eureka:
   instance:
     prefer-ip-address: true
