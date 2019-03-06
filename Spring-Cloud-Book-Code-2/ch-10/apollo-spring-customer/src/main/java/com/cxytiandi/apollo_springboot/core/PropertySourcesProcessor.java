@@ -19,10 +19,12 @@ public class PropertySourcesProcessor implements BeanFactoryPostProcessor, Envir
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		// 启动时初始化配置到Spring PropertySource
-		CompositePropertySource composite = new CompositePropertySource(APOLLO_PROPERTY_SOURCE_NAME);
 		Config config = new Config();
 		ConfigPropertySource configPropertySource = new ConfigPropertySource("application", config);
+		
+		CompositePropertySource composite = new CompositePropertySource(APOLLO_PROPERTY_SOURCE_NAME);
         composite.addPropertySource(configPropertySource);
+        
         environment.getPropertySources().addFirst(composite);
 	}
 
