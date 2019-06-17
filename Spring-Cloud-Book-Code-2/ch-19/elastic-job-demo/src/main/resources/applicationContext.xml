@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:reg="http://www.dangdang.com/schema/ddframe/reg" 
+    xmlns:job="http://www.dangdang.com/schema/ddframe/job" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd 
+                        http://www.dangdang.com/schema/ddframe/reg 
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd 
+                        http://www.dangdang.com/schema/ddframe/job 
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd 
+                        ">
+                
+     <!--配置作业注册中心 -->
+    <reg:zookeeper id="regCenter" server-lists="localhost:2181" namespace="dd-job" 
+    	base-sleep-time-milliseconds="1000" max-sleep-time-milliseconds="3000" max-retries="3" />
+    	
+    <bean id="elasticJobLog" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/batch_log"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+    
+    <!-- 配置简单作业 
+    <job:simple id="mySimpleJob" class="com.cxytiandi.job.MySimpleJob" registry-center-ref="regCenter"
+    	 cron="0 19 21 * * ?" sharding-total-count="2" sharding-item-parameters="0=0,1=1" description="我的第一个简单作业" overwrite="true"/>-->
+    	 
+    <job:simple id="mySimpleJob" class="com.cxytiandi.job.MySimpleJob" registry-center-ref="regCenter"
+    	 cron="0 19 21 * * ?" sharding-total-count="2" sharding-item-parameters="0=上海,1=北京" 
+    	 description="我的第一个简单作业" overwrite="true" event-trace-rdb-data-source="elasticJobLog"
+    	 job-exception-handler="com.cxytiandi.job.CustomJobExceptionHandler"/>
+    	 
+    <job:dataflow id="myDataflowJob" class="com.cxytiandi.job.MyDataflowJob" registry-center-ref="regCenter" 
+    	sharding-total-count="1" cron="0 38 19 * * ?" sharding-item-parameters="" description="我的第一个数据流作业" 
+    	streaming-process="false" overwrite="true"/>
+    	
+    <job:script id="myScriptJob" registry-center-ref="regCenter" 
+    	script-command-line="/Users/yinjihuan/Documents/workspace_spring_cloud/spring-cloud/Spring-Cloud-Book-Code-2/ch-19/elastic-job-demo/demo.sh" 
+    	sharding-total-count="1" cron="0/10 * * * * ?" sharding-item-parameters="" description="我的第一个脚本任务" overwrite="true"
+    	event-trace-rdb-data-source="elasticJobLog">
+    	<job:listener class="com.cxytiandi.job.MessageElasticJobListener"></job:listener>
+    </job:script>
+</beans>

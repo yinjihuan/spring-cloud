@@ -1,0 +1,92 @@
+server:
+  port: 2001
+spring:
+  redis:
+    host: 192.168.0.210
+    port: 6379
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            exposedHeaders:
+            - content-type
+            allowedHeaders:
+            - content-type
+            allowCredentials: true
+            allowedMethods:
+            - GET
+            - OPTIONS
+            - PUT
+            - DELETE
+            - POST
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+#      - id: customer_route
+#        uri: http://cxytiandi.com
+#        predicates:
+#        - name: CheckAuth
+#          args:
+#            name: yinjihuan
+      - id: host_route
+        uri: http://cxytiandi.com
+        predicates:
+        - Path=/blog/detail/{segment}
+        filters:
+         - CheckAuth=yinjihuan,男
+         - name: CheckAuth2
+           args:
+             name: 尹吉欢
+      - id: query_route
+        uri: http://cxytiandi.com
+        predicates:
+        - Query=foo, ba.
+      - id: header_route
+        uri: http://example.org
+        predicates:
+        - Header=X-Request-Id, \d+
+      - id: path_route
+        uri: http://cxytiandi.com
+        predicates:
+        - Path=/course
+      - id: path_route2
+        uri: http://cxytiandi.com
+        predicates:
+        - Path=/blog/**
+      - id: zuul-encrypt-service
+        uri: lb://zuul-encrypt-service
+        predicates:
+        - Path=/data/**
+        filters:
+        - name: Retry
+          args:
+            retries: 3
+            series: SERVER_ERROR
+      - id: user-service
+        uri: lb://user-service
+        predicates:
+        - Path=/user-service/**
+        filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 10
+            redis-rate-limiter.burstCapacity: 20
+            key-resolver: "#{@ipKeyResolver}"
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+     
+            
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://yinjihuan:123456@localhost:8761/eureka/
