@@ -3,7 +3,13 @@
 
 ###### Spring-Cloud-Book-Code-2目录的代码是第二版《Spring Cloud微服务 入门 实战与进阶》配套源码
 
-###### 购买链接：http://product.m.dangdang.com/27884997.html?&unionid=P-107917558m
+###### 购买链接：
+
+当当：http://product.m.dangdang.com/27884997.html
+
+淘宝: https://m.tb.cn/h.egYN7Dm
+
+京东：https://item.m.jd.com/product/49802442789.html
 
 # spring-cloud 文章对应源码
 
