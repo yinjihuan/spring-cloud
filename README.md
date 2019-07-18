@@ -11,6 +11,10 @@
 
 京东：https://item.m.jd.com/product/49802442789.html
 
+# 注意
+
+大家把仓库clone到本地后，不要全部导入IDE中，根据自己学习的章节，一节节的案例进行导入比较好，之前第一版的代码就是全部放一起，还有一些是自研发的框架，所以依赖会有问题，第二版按章节进行分类，这样代码少，更容易导入参考。
+
 # spring-cloud 文章对应源码
 
 - Spring Cloud Eureka 初探：http://cxytiandi.com/blog/detail/11988
